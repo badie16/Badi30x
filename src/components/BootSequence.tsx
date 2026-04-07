@@ -175,7 +175,6 @@ export default function KaliBootSequence() {
 									</p>
 								</motion.div>
 							)}
-
 							{/* LIGNE DE COMMANDE KALI */}
 							{(step === "init" || step === "services" || step === "done") && (
 								<div className="mt-2">
