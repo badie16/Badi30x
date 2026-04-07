@@ -3,170 +3,228 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 
-const CHARSET = "01abcdef$#@";
-const COMMAND = "sudo ./init_secure_stack --mode stealth";
+const COMMANDS = {
+	user: "badie",
+	pass: "••••••••",
+	init: "sudo systemctl start security-stack",
+};
 
-// Helper pour le texte aléatoire de la pluie Matrix
-function createColumnString(length: number) {
-	return Array.from(
-		{ length },
-		() => CHARSET[Math.floor(Math.random() * CHARSET.length)],
-	).join("");
-}
-
-export default function BootSequence() {
+export default function KaliBootSequence() {
 	const [isVisible, setIsVisible] = useState(true);
+	const [step, setStep] = useState<
+		"user" | "pass" | "login_process" | "motd" | "init" | "services" | "done"
+	>("user");
 	const [typedChars, setTypedChars] = useState(0);
-	const [visibleLines, setVisibleLines] = useState<number>(0);
-	const [isFinished, setIsFinished] = useState(false);
+	const [visibleLines, setVisibleLines] = useState(0);
 
-	const outputLines = useMemo(
-		() => [
-			{ text: "[ OK ] Initializing core kernel...", color: "text-emerald-400" },
-			{
-				text: "[ OK ] Loading firewall profiles...",
-				color: "text-emerald-400",
-			},
-			{ text: "[ OK ] Encrypting environment...", color: "text-emerald-400" },
-			{ text: "[ INFO ] Anomaly detector online", color: "text-cyan-400" },
-			{ text: "ACCESS GRANTED :: WELCOME BACK", color: "text-white font-bold" },
-		],
-		[],
-	);
+	const services = [
+		{ name: "PostgreSQL Database", delay: 400 },
+		{ name: "Metasploit RPC Server", delay: 800 },
+		{ name: "Nginx Reverse Proxy", delay: 1200 },
+		{ name: "SentinelLogs Anomaly Detector", delay: 1600 },
+	];
 
-	const rainColumns = useMemo(
-		() =>
-			Array.from({ length: 20 }, (_, i) => ({
-				id: i,
-				left: `${i * 5 + Math.random() * 2}%`,
-				content: createColumnString(30),
-				duration: 3 + Math.random() * 4,
-				delay: Math.random() * 5,
-			})),
-		[],
-	);
-
+	// Séquence de frappe
 	useEffect(() => {
-		// 1. Animation de la frappe
-		const typingInterval = setInterval(() => {
+		let text = "";
+		if (step === "user") text = COMMANDS.user;
+		if (step === "pass") text = COMMANDS.pass;
+		if (step === "init") text = COMMANDS.init;
+		if (!text) return;
+
+		const interval = setInterval(() => {
 			setTypedChars((prev) => {
-				if (prev >= COMMAND.length) {
-					clearInterval(typingInterval);
+				if (prev >= text.length) {
+					clearInterval(interval);
+					setTimeout(() => {
+						setTypedChars(0);
+						if (step === "user") setStep("pass");
+						else if (step === "pass") setStep("login_process");
+						else if (step === "init") setStep("services");
+					}, 500);
 					return prev;
 				}
 				return prev + 1;
 			});
-		}, 40);
+		}, 50);
+		return () => clearInterval(interval);
+	}, [step]);
 
-		// 2. Apparition des lignes après la commande
-		if (typedChars === COMMAND.length) {
-			const lineInterval = setInterval(() => {
-				setVisibleLines((prev) => {
-					if (prev >= outputLines.length) {
-						clearInterval(lineInterval);
-						setTimeout(() => setIsFinished(true), 1000); // Temps d'attente avant de fermer
-						return prev;
-					}
-					return prev + 1;
-				});
-			}, 400);
-			return () => clearInterval(lineInterval);
-		}
-
-		return () => clearInterval(typingInterval);
-	}, [typedChars, outputLines.length]);
-
-	// Fermeture automatique après la fin
+	// Transition après "login_process" vers le MOTD
 	useEffect(() => {
-		if (isFinished) {
-			const timeout = setTimeout(() => setIsVisible(false), 500);
-			return () => clearTimeout(timeout);
+		if (step === "login_process") {
+			setTimeout(() => setStep("motd"), 800);
 		}
-	}, [isFinished]);
+		if (step === "motd") {
+			setTimeout(() => setStep("init"), 1500);
+		}
+	}, [step]);
+
+	// Animation des services
+	useEffect(() => {
+		if (step === "services") {
+			services.forEach((_, i) => {
+				setTimeout(() => setVisibleLines(i + 1), services[i].delay);
+			});
+			setTimeout(() => setStep("done"), 2500);
+		}
+	}, [step]);
+
+	useEffect(() => {
+		if (step === "done") {
+			setTimeout(() => setIsVisible(false), 1000);
+		}
+	}, [step]);
 
 	return (
 		<AnimatePresence>
 			{isVisible && (
 				<motion.div
 					initial={{ opacity: 1 }}
-					exit={{ opacity: 0, scale: 1.05 }}
-					transition={{ duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] }}
-					className="fixed inset-0 z-[9999] flex items-center justify-center bg-black overflow-hidden"
+					exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
+					transition={{ duration: 0.8 }}
+					className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0a0a0a] font-mono text-[13px] md:text-sm"
 				>
-					{/* Matrix Rain Background */}
-					<div className="absolute inset-0 pointer-events-none opacity-20">
-						{rainColumns.map((col) => (
-							<motion.div
-								key={col.id}
-								initial={{ y: "-100%" }}
-								animate={{ y: "100%" }}
-								transition={{
-									duration: col.duration,
-									repeat: Infinity,
-									ease: "linear",
-									delay: -col.delay,
-								}}
-								className="absolute font-mono text-[10px] text-emerald-500 whitespace-pre"
-								style={{ left: col.left }}
-							>
-								{col.content.split("").map((char, i) => (
-									<div key={i}>{char}</div>
-								))}
-							</motion.div>
-						))}
-					</div>
+					{/* Effet de scanline CRT */}
+					<div className="pointer-events-none absolute inset-0 z-50 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%)] bg-[length:100%_4px]" />
 
-					{/* Terminal Window */}
-					<motion.div
-						initial={{ y: 20, opacity: 0 }}
-						animate={{ y: 0, opacity: 1 }}
-						className="relative w-[min(90vw,650px)] overflow-hidden rounded-lg border border-emerald-500/30 bg-black/80 backdrop-blur-md shadow-[0_0_40px_rgba(16,185,129,0.1)]"
-					>
-						{/* Header */}
-						<div className="flex items-center gap-2 border-b border-emerald-500/20 bg-emerald-500/5 px-4 py-3">
-							<div className="flex gap-1.5">
-								<div className="h-3 w-3 rounded-full bg-red-500/50" />
-								<div className="h-3 w-3 rounded-full bg-amber-500/50" />
-								<div className="h-3 w-3 rounded-full bg-emerald-500/50" />
+					<div className="w-[min(95vw,800px)] rounded-md border border-zinc-800 bg-[#0c0c0c] shadow-2xl overflow-hidden">
+						{/* Barre de titre Kali */}
+						<div className="flex items-center justify-between bg-[#1a1a1a] px-4 py-2 border-b border-zinc-800">
+							<div className="flex gap-2">
+								<div className="h-3 w-3 rounded-full bg-[#ff5f56]" />
+								<div className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
+								<div className="h-3 w-3 rounded-full bg-[#27c93f]" />
 							</div>
-							<span className="ml-2 font-mono text-xs text-emerald-500/60 uppercase tracking-widest">
-								session@root: ~auth
-							</span>
+							<span className="text-zinc-500 text-xs">badie@kali: ~</span>
+							<div className="w-12" />
 						</div>
 
-						{/* Content */}
-						<div className="p-6 font-mono text-sm leading-relaxed">
-							<div className="flex text-emerald-400">
-								<span className="mr-2 shrink-0">badie@kali:~$</span>
-								<span>
-									{COMMAND.slice(0, typedChars)}
-									{typedChars < COMMAND.length && (
-										<span className="inline-block w-2 h-4 ml-1 bg-emerald-500 animate-pulse" />
+						<div className="p-5 min-h-[400px] text-zinc-300">
+							{/* Étape LOGIN */}
+							<div className="space-y-1">
+								<p>Kali GNU/Linux Rolling kali tty1</p>
+								<p>
+									kali login:{" "}
+									<span className="text-white">
+										{step === "user"
+											? COMMANDS.user.slice(0, typedChars)
+											: COMMANDS.user}
+									</span>
+									{step === "user" && (
+										<span className="inline-block w-2 h-4 bg-white ml-1 animate-pulse" />
 									)}
-								</span>
-							</div>
-
-							<div className="mt-4 space-y-1">
-								{outputLines.slice(0, visibleLines).map((line, i) => (
-									<motion.p
-										key={i}
-										initial={{ opacity: 0, x: -10 }}
-										animate={{ opacity: 1, x: 0 }}
-										className={line.color}
-									>
-										{line.text}
-									</motion.p>
-								))}
-								{isFinished && (
-									<motion.span
-										animate={{ opacity: [1, 0] }}
-										transition={{ repeat: Infinity, duration: 0.8 }}
-										className="inline-block w-2 h-4 bg-emerald-500 mt-2"
-									/>
+								</p>
+								{step !== "user" && (
+									<p>
+										Password:{" "}
+										<span className="text-white">
+											{step === "pass"
+												? COMMANDS.pass.slice(0, typedChars)
+												: COMMANDS.pass}
+										</span>
+										{step === "pass" && (
+											<span className="inline-block w-2 h-4 bg-white ml-1 animate-pulse" />
+										)}
+									</p>
 								)}
 							</div>
+
+							{/* MESSAGE OF THE DAY (MOTD) */}
+							{(step === "motd" ||
+								step === "init" ||
+								step === "services" ||
+								step === "done") && (
+								<motion.div
+									initial={{ opacity: 0 }}
+									animate={{ opacity: 1 }}
+									className="mt-4"
+								>
+									<pre className="text-[#3465a4] leading-tight font-bold mb-4">
+										{`  ______________
+ < KALI LINUX >
+  --------------
+         \\   ^__^
+          \\  (oo)\\_______
+             (__)\\       )\\/\\
+                 ||----w |
+                 ||     ||`}
+									</pre>
+									<div className="grid grid-cols-2 gap-x-8 text-xs mb-4 text-zinc-400">
+										<p>
+											OS:{" "}
+											<span className="text-zinc-200">
+												Kali GNU/Linux Rolling x86_64
+											</span>
+										</p>
+										<p>
+											Kernel:{" "}
+											<span className="text-zinc-200">6.5.0-kali3-amd64</span>
+										</p>
+										<p>
+											Uptime: <span className="text-zinc-200">1 min</span>
+										</p>
+										<p>
+											Packages:{" "}
+											<span className="text-zinc-200">2450 (dpkg)</span>
+										</p>
+									</div>
+									<p className="text-emerald-500 mb-4">
+										Last login: {new Date().toLocaleDateString()} from
+										192.168.1.15
+									</p>
+								</motion.div>
+							)}
+
+							{/* LIGNE DE COMMANDE KALI */}
+							{(step === "init" || step === "services" || step === "done") && (
+								<div className="mt-2">
+									<p>
+										<span className="text-[#3465a4] font-bold">┌──(</span>
+										<span className="text-[#ef2929] font-bold">
+											badie㉿kali
+										</span>
+										<span className="text-[#3465a4] font-bold">)-[</span>
+										<span className="text-white">~</span>
+										<span className="text-[#3465a4] font-bold">]</span>
+									</p>
+									<p>
+										<span className="text-[#3465a4] font-bold">└─</span>
+										<span className="text-[#ef2929] font-bold">$</span>{" "}
+										<span className="text-white">
+											{step === "init"
+												? COMMANDS.init.slice(0, typedChars)
+												: COMMANDS.init}
+										</span>
+										{step === "init" && (
+											<span className="inline-block w-2 h-4 bg-white ml-1 animate-pulse" />
+										)}
+									</p>
+								</div>
+							)}
+
+							{/* DÉMARRAGE DES SERVICES */}
+							{(step === "services" || step === "done") && (
+								<div className="mt-4 space-y-1 border-l-2 border-zinc-800 pl-4">
+									{services.slice(0, visibleLines).map((s, i) => (
+										<p key={i} className="text-xs">
+											<span className="text-emerald-500">[ OK ]</span> Started{" "}
+											{s.name}.
+										</p>
+									))}
+									{step === "done" && (
+										<motion.p
+											initial={{ opacity: 0 }}
+											animate={{ opacity: 1 }}
+											className="text-white font-bold mt-4"
+										>
+											Launching Portfolio Interface...
+										</motion.p>
+									)}
+								</div>
+							)}
 						</div>
-					</motion.div>
+					</div>
 				</motion.div>
 			)}
 		</AnimatePresence>
