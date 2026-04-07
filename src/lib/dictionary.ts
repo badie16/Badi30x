@@ -11,7 +11,7 @@ export const dictionary = {
 			switchLabel: "Passer en anglais",
 		},
 		hero: {
-			badge: "Stage recherché en cybersécurité, SOC ou sécurité applicative",
+			badge: "Ouvert aux opportunités de travail et freelance en cybersécurité",
 			subtitle: "Sécurité IT & Confiance Numérique",
 			description:
 				"Étudiant ingénieur à l'ENSIASD, je travaille sur la détection d'anomalies, l'analyse de vulnérabilités et la sécurisation d'applications web, avec un intérêt marqué pour le pentest, le SOC et l'OT/ICS.",
@@ -20,7 +20,7 @@ export const dictionary = {
 				interest: "Intérêt",
 				ai: "IA pour détection d'anomalies",
 				targetProfile: "Profil ciblé",
-				targetRole: "Stage actuel recherché",
+				targetRole: "Opportunités visées",
 				appliedSecurity: "Sécurité appliquée",
 				mainTitle: "Sécurité offensive, défensive et data",
 				mainText:
@@ -39,12 +39,13 @@ export const dictionary = {
 				dev: "Développement",
 				ot: "Sécurité OT/ICS & audit",
 				ai: "IA & data",
+				soft: "Soft Skills",
 			},
 		},
 		experience: {
 			title: "Expériences",
 			description:
-				"Deux stages qui montrent à la fois une pratique du développement sécurisé et une sensibilité à la sécurité applicative.",
+				"Deux expériences qui montrent à la fois une pratique du développement sécurisé et une sensibilité à la sécurité applicative.",
 			roles: {
 				rw: "Stagiaire Développeur Frontend",
 				df: "Stagiaire Ingénieur Full Stack",
@@ -71,9 +72,9 @@ export const dictionary = {
 		projects: {
 			title: "Projets sélectionnés",
 			description:
-				"Des projets issus de ton CV, avec un accent sur la cybersécurité, l'OT/ICS et la détection par IA.",
-			caption: "Projets issus du portfolio CV",
-			footer: "Stage, scripts et outils de sécurité",
+				"Voici quelques projets sur lesquels j'ai travaillé. Chacun a été un défi unique qui m'a aidé à progresser.",
+			caption: "Voir tous les projets",
+			footer: "Et bien d'autres.",
 			categories: {
 				p1: "Machine Learning / SOC",
 				p2: "Sécurité OT / ICS",
@@ -107,10 +108,10 @@ export const dictionary = {
 			},
 		},
 		contact: {
-			titleTop: "Un stage en cybersécurité ?",
+			titleTop: "Une opportunité de travail ou freelance ?",
 			titleBottom: "Parlons-en",
 			cta: "Me contacter",
-			tagline: "cybersécurité, SOC et sécurité applicative",
+			tagline: "cybersécurité, SOC, sécurité applicative et missions freelance",
 			email: "Email",
 			linkedin: "LinkedIn",
 			github: "GitHub",
@@ -127,7 +128,7 @@ export const dictionary = {
 		},
 		hero: {
 			badge:
-				"Seeking an internship in cybersecurity, SOC, or application security",
+				"Open to work and freelance opportunities in cybersecurity",
 			subtitle: "IT Security & Digital Trust",
 			description:
 				"Engineering student at ENSIASD working on anomaly detection, vulnerability analysis, and web application security, with a strong focus on pentesting, SOC operations, and OT/ICS.",
@@ -136,7 +137,7 @@ export const dictionary = {
 				interest: "Interest",
 				ai: "AI for anomaly detection",
 				targetProfile: "Target profile",
-				targetRole: "Current target role",
+				targetRole: "Opportunities in focus",
 				appliedSecurity: "Applied security",
 				mainTitle: "Offensive, defensive security and data",
 				mainText:
@@ -155,12 +156,13 @@ export const dictionary = {
 				dev: "Development",
 				ot: "OT/ICS security & audit",
 				ai: "AI & data",
+				soft: "Soft Skills",
 			},
 		},
 		experience: {
 			title: "Experience",
 			description:
-				"Two internships showing both secure development practice and an application security mindset.",
+				"Two experiences showing both secure development practice and an application security mindset.",
 			roles: {
 				rw: "Frontend Developer Intern",
 				df: "Full Stack Engineering Intern",
@@ -187,9 +189,9 @@ export const dictionary = {
 		projects: {
 			title: "Selected projects",
 			description:
-				"Projects based on your CV, with a focus on cybersecurity, OT/ICS, and AI-driven detection.",
-			caption: "Projects from the CV portfolio",
-			footer: "Internships, scripts and security tooling",
+				"Here are some of the projects I've worked on. Each one was a unique challenge that helped me grow.",
+			caption: "View all projects",
+			footer: "And many more.",
 			categories: {
 				p1: "Machine Learning / SOC",
 				p2: "OT / ICS security",
@@ -223,10 +225,10 @@ export const dictionary = {
 			},
 		},
 		contact: {
-			titleTop: "Looking for a cybersecurity internship?",
+			titleTop: "Got a project in mind?",
 			titleBottom: "Let's talk",
 			cta: "Contact me",
-			tagline: "cybersecurity, SOC and application security",
+			tagline: "cybersecurity, SOC, application security and freelance missions",
 			email: "Email",
 			linkedin: "LinkedIn",
 			github: "GitHub",

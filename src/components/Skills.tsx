@@ -94,10 +94,19 @@ const skills = [
 			{ name: "Machine Learning", icon: <Brain /> },
 			{ name: "Détection d'anomalies", icon: <Zap /> },
 			{ name: "Data analysis", icon: <Database /> },
-			{ name: "Travail en équipe", icon: <Users /> },
-			{ name: "Communication", icon: <MessageSquare /> },
 		],
 		className: "md:col-span-2 bg-emerald-900/20 border-emerald-500/20",
+	},
+	{
+		categoryKey: "soft",
+		icon: <Users className="w-6 h-6" />,
+		items: [
+			{ name: "Communication", icon: <MessageSquare /> },
+			{ name: "Problem Solving", icon: <Brain /> },
+			{ name: "Leadership", icon: <Users /> },
+			{ name: "Adaptability", icon: <Zap /> },
+		],
+		className: "md:col-span-1 bg-amber-900/20 border-amber-500/20",
 	},
 ];
 
@@ -157,7 +166,7 @@ export default function Skills() {
 											{/* Tooltip */}
 											<div className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1 bg-neutral-800 text-white text-xs rounded-md opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none whitespace-nowrap border border-white/10 z-20">
 												{item.name}
-												<div className="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-2 h-2 bg-neutral-800 rotate-45 border-b border-r border-white/10"></div>
+												<div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-neutral-800 rotate-45 border-b border-r border-white/10"></div>
 											</div>
 										</div>
 									))}
