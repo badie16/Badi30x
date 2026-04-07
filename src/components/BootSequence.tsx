@@ -3,122 +3,170 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 
-type RainColumn = {
-	left: number;
-	content: string;
-	duration: number;
-	delay: number;
-};
-
 const CHARSET = "01abcdef$#@";
+const COMMAND = "sudo ./init_secure_stack --mode stealth";
 
-function pseudoRandom(seed: number) {
-	const value = Math.sin(seed * 9999) * 10000;
-	return value - Math.floor(value);
-}
-
-function createColumnString(length: number, seed: number) {
+// Helper pour le texte aléatoire de la pluie Matrix
+function createColumnString(length: number) {
 	return Array.from(
 		{ length },
-		(_, index) =>
-			CHARSET[Math.floor(pseudoRandom(seed + index) * CHARSET.length)],
+		() => CHARSET[Math.floor(Math.random() * CHARSET.length)],
 	).join("");
 }
 
 export default function BootSequence() {
 	const [isVisible, setIsVisible] = useState(true);
 	const [typedChars, setTypedChars] = useState(0);
-	const command = "sudo ./init_secure_stack --mode stealth";
+	const [visibleLines, setVisibleLines] = useState<number>(0);
+	const [isFinished, setIsFinished] = useState(false);
 
-	const rainColumns = useMemo<RainColumn[]>(
+	const outputLines = useMemo(
+		() => [
+			{ text: "[ OK ] Initializing core kernel...", color: "text-emerald-400" },
+			{
+				text: "[ OK ] Loading firewall profiles...",
+				color: "text-emerald-400",
+			},
+			{ text: "[ OK ] Encrypting environment...", color: "text-emerald-400" },
+			{ text: "[ INFO ] Anomaly detector online", color: "text-cyan-400" },
+			{ text: "ACCESS GRANTED :: WELCOME BACK", color: "text-white font-bold" },
+		],
+		[],
+	);
+
+	const rainColumns = useMemo(
 		() =>
-			Array.from({ length: 18 }, (_, index) => {
-				const seed = index + 1;
-				return {
-					left: (index / 18) * 100 + pseudoRandom(seed * 2) * 2,
-					content: createColumnString(44, seed * 11),
-					duration: 2.8 + pseudoRandom(seed * 3) * 3,
-					delay: pseudoRandom(seed * 5) * 2.5,
-				};
-			}),
+			Array.from({ length: 20 }, (_, i) => ({
+				id: i,
+				left: `${i * 5 + Math.random() * 2}%`,
+				content: createColumnString(30),
+				duration: 3 + Math.random() * 4,
+				delay: Math.random() * 5,
+			})),
 		[],
 	);
 
 	useEffect(() => {
-		const visibilityTimeout = window.setTimeout(() => {
-			setIsVisible(false);
-		}, 2900);
-
-		const typeInterval = window.setInterval(() => {
-			setTypedChars((currentValue) => {
-				if (currentValue >= command.length) {
-					window.clearInterval(typeInterval);
-					return currentValue;
+		// 1. Animation de la frappe
+		const typingInterval = setInterval(() => {
+			setTypedChars((prev) => {
+				if (prev >= COMMAND.length) {
+					clearInterval(typingInterval);
+					return prev;
 				}
-
-				return currentValue + 1;
+				return prev + 1;
 			});
-		}, 36);
+		}, 40);
 
-		return () => {
-			window.clearTimeout(visibilityTimeout);
-			window.clearInterval(typeInterval);
-		};
-	}, [command.length]);
+		// 2. Apparition des lignes après la commande
+		if (typedChars === COMMAND.length) {
+			const lineInterval = setInterval(() => {
+				setVisibleLines((prev) => {
+					if (prev >= outputLines.length) {
+						clearInterval(lineInterval);
+						setTimeout(() => setIsFinished(true), 1000); // Temps d'attente avant de fermer
+						return prev;
+					}
+					return prev + 1;
+				});
+			}, 400);
+			return () => clearInterval(lineInterval);
+		}
+
+		return () => clearInterval(typingInterval);
+	}, [typedChars, outputLines.length]);
+
+	// Fermeture automatique après la fin
+	useEffect(() => {
+		if (isFinished) {
+			const timeout = setTimeout(() => setIsVisible(false), 500);
+			return () => clearTimeout(timeout);
+		}
+	}, [isFinished]);
 
 	return (
 		<AnimatePresence>
 			{isVisible && (
 				<motion.div
 					initial={{ opacity: 1 }}
-					exit={{ opacity: 0 }}
-					transition={{ duration: 0.5, ease: "easeOut" }}
-					className="terminal-boot-overlay fixed inset-0 overflow-hidden"
-					style={{ zIndex: 9999 }}
+					exit={{ opacity: 0, scale: 1.05 }}
+					transition={{ duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] }}
+					className="fixed inset-0 z-[9999] flex items-center justify-center bg-black overflow-hidden"
 				>
-					<div className="absolute inset-0">
-						{rainColumns.map((column, index) => (
-							<p
-								key={`rain-${column.left}-${index}`}
-								className="terminal-rain-column absolute top-[-130%] font-mono text-[10px] tracking-[0.25em] text-emerald-400/35"
-								style={{
-									left: `${column.left}%`,
-									animationDuration: `${column.duration}s`,
-									animationDelay: `-${column.delay}s`,
+					{/* Matrix Rain Background */}
+					<div className="absolute inset-0 pointer-events-none opacity-20">
+						{rainColumns.map((col) => (
+							<motion.div
+								key={col.id}
+								initial={{ y: "-100%" }}
+								animate={{ y: "100%" }}
+								transition={{
+									duration: col.duration,
+									repeat: Infinity,
+									ease: "linear",
+									delay: -col.delay,
 								}}
+								className="absolute font-mono text-[10px] text-emerald-500 whitespace-pre"
+								style={{ left: col.left }}
 							>
-								{column.content}
-							</p>
+								{col.content.split("").map((char, i) => (
+									<div key={i}>{char}</div>
+								))}
+							</motion.div>
 						))}
 					</div>
 
-					<div className="relative mx-auto mt-[15vh] w-[min(92vw,780px)] rounded-2xl border border-emerald-400/35 bg-black p-4 md:p-6 shadow-[0_0_80px_rgba(16,185,129,0.15)]">
-						<div className="mb-4 flex items-center gap-2 border-b border-emerald-500/20 pb-3">
-							<span className="h-2.5 w-2.5 rounded-full bg-rose-400/80" />
-							<span className="h-2.5 w-2.5 rounded-full bg-amber-300/80" />
-							<span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
-							<span className="ml-2 font-mono text-xs tracking-[0.18em] text-emerald-300/80">
-								secure-terminal://boot
+					{/* Terminal Window */}
+					<motion.div
+						initial={{ y: 20, opacity: 0 }}
+						animate={{ y: 0, opacity: 1 }}
+						className="relative w-[min(90vw,650px)] overflow-hidden rounded-lg border border-emerald-500/30 bg-black/80 backdrop-blur-md shadow-[0_0_40px_rgba(16,185,129,0.1)]"
+					>
+						{/* Header */}
+						<div className="flex items-center gap-2 border-b border-emerald-500/20 bg-emerald-500/5 px-4 py-3">
+							<div className="flex gap-1.5">
+								<div className="h-3 w-3 rounded-full bg-red-500/50" />
+								<div className="h-3 w-3 rounded-full bg-amber-500/50" />
+								<div className="h-3 w-3 rounded-full bg-emerald-500/50" />
+							</div>
+							<span className="ml-2 font-mono text-xs text-emerald-500/60 uppercase tracking-widest">
+								session@root: ~auth
 							</span>
 						</div>
 
-						<div className="space-y-2 font-mono text-xs text-emerald-200 md:text-sm">
-							<p>
-								badie@kali:~$ {command.slice(0, typedChars)}
-								<span className="hacker-cursor">_</span>
-							</p>
-							<p className="text-emerald-300/80">
-								[ OK ] loading firewall profiles...
-							</p>
-							<p className="text-emerald-300/80">
-								[ OK ] encrypting environment variables...
-							</p>
-							<p className="text-cyan-300/80">
-								[ INFO ] anomaly detector online
-							</p>
-							<p className="text-emerald-200">ACCESS GRANTED :: WELCOME BACK</p>
+						{/* Content */}
+						<div className="p-6 font-mono text-sm leading-relaxed">
+							<div className="flex text-emerald-400">
+								<span className="mr-2 shrink-0">badie@kali:~$</span>
+								<span>
+									{COMMAND.slice(0, typedChars)}
+									{typedChars < COMMAND.length && (
+										<span className="inline-block w-2 h-4 ml-1 bg-emerald-500 animate-pulse" />
+									)}
+								</span>
+							</div>
+
+							<div className="mt-4 space-y-1">
+								{outputLines.slice(0, visibleLines).map((line, i) => (
+									<motion.p
+										key={i}
+										initial={{ opacity: 0, x: -10 }}
+										animate={{ opacity: 1, x: 0 }}
+										className={line.color}
+									>
+										{line.text}
+									</motion.p>
+								))}
+								{isFinished && (
+									<motion.span
+										animate={{ opacity: [1, 0] }}
+										transition={{ repeat: Infinity, duration: 0.8 }}
+										className="inline-block w-2 h-4 bg-emerald-500 mt-2"
+									/>
+								)}
+							</div>
 						</div>
-					</div>
+					</motion.div>
 				</motion.div>
 			)}
 		</AnimatePresence>
