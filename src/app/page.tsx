@@ -8,12 +8,14 @@ import Header from "@/components/Header";
 import BackToTop from "@/components/BackToTop";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import SectionTransition, { PageTransition } from "@/components/PageTransition";
+import BootSequence from "@/components/BootSequence";
 
 export default function Home() {
 	return (
 		<LanguageProvider>
 			<PageTransition>
 				<main className="min-h-screen bg-black text-white selection:bg-primary/30">
+					<BootSequence />
 					<Header />
 					<Hero />
 					<SectionTransition delay={0.1}>

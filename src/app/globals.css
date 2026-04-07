@@ -1,20 +1,89 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
-  --foreground: #ededed;
-  --font-inter: 'Inter', sans-serif;
+	--background: #000000;
+	--foreground: #ededed;
+	--font-inter: "Inter", sans-serif;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-inter);
-  overflow-x: hidden;
+	color: var(--foreground);
+	background: var(--background);
+	font-family: var(--font-inter);
+	overflow-x: hidden;
+}
+
+.terminal-boot-overlay {
+	background: #000;
+}
+
+.terminal-boot-overlay::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: repeating-linear-gradient(
+		to bottom,
+		rgba(16, 185, 129, 0.06) 0,
+		rgba(16, 185, 129, 0.06) 1px,
+		transparent 1px,
+		transparent 4px
+	);
+	animation: scan-move 6s linear infinite;
+	pointer-events: none;
+}
+
+.terminal-rain-column {
+	writing-mode: vertical-rl;
+	text-orientation: upright;
+	user-select: none;
+	animation-name: rain-fall;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.hacker-cursor {
+	display: inline-block;
+	width: 0.55rem;
+	margin-left: 0.1rem;
+	animation: cursor-blink 0.8s steps(1, end) infinite;
+}
+
+@keyframes rain-fall {
+	from {
+		transform: translateY(0);
+		opacity: 0;
+	}
+	12% {
+		opacity: 1;
+	}
+	to {
+		transform: translateY(220%);
+		opacity: 0;
+	}
+}
+
+@keyframes scan-move {
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: 0 180px;
+	}
+}
+
+@keyframes cursor-blink {
+	0%,
+	45% {
+		opacity: 1;
+	}
+	46%,
+	100% {
+		opacity: 0;
+	}
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+	.text-balance {
+		text-wrap: balance;
+	}
 }
