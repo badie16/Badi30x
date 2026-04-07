@@ -127,8 +127,7 @@ export const dictionary = {
 			switchLabel: "Switch to French",
 		},
 		hero: {
-			badge:
-				"Open to work and freelance opportunities in cybersecurity",
+			badge: "Open to work and freelance opportunities in cybersecurity",
 			subtitle: "IT Security & Digital Trust",
 			description:
 				"Engineering student at ENSIASD working on anomaly detection, vulnerability analysis, and web application security, with a strong focus on pentesting, SOC operations, and OT/ICS.",
@@ -228,7 +227,8 @@ export const dictionary = {
 			titleTop: "Got a project in mind?",
 			titleBottom: "Let's talk",
 			cta: "Contact me",
-			tagline: "cybersecurity, SOC, application security and freelance missions",
+			tagline:
+				"cybersecurity, SOC, application security and freelance missions",
 			email: "Email",
 			linkedin: "LinkedIn",
 			github: "GitHub",
