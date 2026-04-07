@@ -1,13 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-	Code2,
-	GraduationCap,
-	MapPin,
-	Shield,
-	TerminalSquare,
-} from "lucide-react";
+import { Code2, GraduationCap, MapPin, Shield } from "lucide-react";
 import { useLanguage } from "@/components/LanguageProvider";
 import { getDictionary } from "@/lib/dictionary";
 
@@ -56,42 +50,17 @@ export default function Hero() {
 						</span>
 					</div>
 
-					<div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-						<div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-							<p className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-2">
-								Focus
-							</p>
-							<p className="text-white font-semibold">
-								{language === "en" ? "Pentesting, SOC, AppSec" : "Pentest, SOC, AppSec"}
-							</p>
-						</div>
-						<div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-							<p className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-2">
-								Stack
-							</p>
-							<p className="text-white font-semibold">
-								Next.js, FastAPI, PostgreSQL
-							</p>
-						</div>
-						<div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-							<p className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-2">
-								{t.hero.cards.interest}
-							</p>
-							<p className="text-white font-semibold">
-								{t.hero.cards.ai}
-							</p>
-						</div>
-					</div>
+					
 				</motion.div>
 
 				<motion.div
 					initial={{ opacity: 0, scale: 0.9 }}
 					animate={{ opacity: 1, scale: 1 }}
 					transition={{ duration: 0.5, delay: 0.2 }}
-					className="relative w-full rounded-4xl border border-emerald-400/20 bg-[#0a0f12] p-3 md:p-4 shadow-2xl shadow-black/40 transition-all duration-500 overflow-hidden"
+					className="relative w-full rounded-4xl border border-emerald-400/20 bg-[#000000] p-3 md:p-4  transition-all duration-500 overflow-hidden"
 				>
 					<div className="absolute inset-0 rounded-4xl bg-[radial-gradient(circle_at_top,rgba(16,185,129,0.12),transparent_45%)]" />
-					<div className="relative rounded-[1.35rem] border border-emerald-400/20 bg-[#060b0e]">
+					<div className="relative rounded-[1.35rem] border border-emerald-400/20 bg-[#000000]">
 						<div className="flex items-center justify-between border-b border-emerald-400/15 px-4 py-3">
 							<div className="flex items-center gap-2">
 								<span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
@@ -105,31 +74,30 @@ export default function Hero() {
 
 						<div className="p-4 md:p-5 font-mono text-xs md:text-sm leading-relaxed space-y-3 text-emerald-300">
 							<p className="text-emerald-200">
-								<span className="text-emerald-400">badie@kali</span>:<span className="text-sky-300">~</span>$ cat profile.txt
+								<span className="text-emerald-400">badie@kali</span>:
+								<span className="text-sky-300">~</span>$ cat profile.txt
 							</p>
 							<p className="text-white/85">{t.hero.cards.mainTitle}</p>
 
 							<p className="text-emerald-200">
-								<span className="text-emerald-400">badie@kali</span>:<span className="text-sky-300">~</span>$ cat focus.txt
+								<span className="text-emerald-400">badie@kali</span>:
+								<span className="text-sky-300">~</span>$ cat focus.txt
 							</p>
 							<p className="text-white/75">{t.hero.cards.mainText}</p>
 
 							<p className="text-emerald-200">
-								<span className="text-emerald-400">badie@kali</span>:<span className="text-sky-300">~</span>$ cat roles.txt
-							</p>
-							<p className="text-white/80">
-								{t.hero.cards.targetRole}: <span className="text-white">{t.hero.cards.roleValue}</span>
-							</p>
-
-							<p className="text-emerald-200">
-								<span className="text-emerald-400">badie@kali</span>:<span className="text-sky-300">~</span>$ curl -s https://api.badie-sec.dev/scope
+								<span className="text-emerald-400">badie@kali</span>:
+								<span className="text-sky-300">~</span>$ curl -s
+								https://api.badie-sec.dev/scope
 							</p>
 							<p className="text-white/70">
-								{{"domain":"security","stack":"{t.hero.cards.securityValue}"}}
+								{`{"domain":"security","stack":"${t.hero.cards.securityValue}"}`}
 							</p>
 
 							<p className="text-emerald-200">
-								<span className="text-emerald-400">badie@kali</span>:<span className="text-sky-300">~</span>$ <span className="inline-block w-2 h-4 bg-emerald-300/90 animate-pulse align-middle" />
+								<span className="text-emerald-400">badie@kali</span>:
+								<span className="text-sky-300">~</span>${" "}
+								<span className="inline-block w-2 h-4 bg-emerald-300/90 animate-pulse align-middle" />
 							</p>
 						</div>
 					</div>

@@ -142,7 +142,7 @@ export const dictionary = {
 				mainText:
 					"Penetration testing, log analysis, API hardening, Modbus/ICS, and anomaly detection: a practical profile built for field-ready security work.",
 				roleValue: "SOC / Pentesting / Application Security",
-				securityValue: "Frontend, APIs, logs and industrial networks",
+				securityValue: "Frontend, Backend, APIs, logs and industrial networks",
 			},
 		},
 		skills: {

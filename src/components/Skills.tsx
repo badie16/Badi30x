@@ -85,7 +85,7 @@ const skills = [
 			{ name: "ISO 27001 / 27002", icon: <FileSearch /> },
 			{ name: "Audit sécurité", icon: <Shield /> },
 		],
-		className: "md:col-span-1 bg-neutral-900/50 border-neutral-800",
+		className: "md:col-span-2 bg-neutral-900/50 border-neutral-800",
 	},
 	{
 		categoryKey: "ai",
@@ -95,7 +95,7 @@ const skills = [
 			{ name: "Détection d'anomalies", icon: <Zap /> },
 			{ name: "Data analysis", icon: <Database /> },
 		],
-		className: "md:col-span-2 bg-emerald-900/20 border-emerald-500/20",
+		className: "md:col-span-1 bg-emerald-900/20 border-emerald-500/20",
 	},
 	{
 		categoryKey: "soft",
@@ -106,7 +106,7 @@ const skills = [
 			{ name: "Leadership", icon: <Users /> },
 			{ name: "Adaptability", icon: <Zap /> },
 		],
-		className: "md:col-span-1 bg-amber-900/20 border-amber-500/20",
+		className: "md:col-span-2 bg-amber-900/20 border-amber-500/20",
 	},
 ];
 
