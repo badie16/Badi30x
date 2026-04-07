@@ -1,14 +1,38 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/components/LanguageProvider";
 import { getDictionary } from "@/lib/dictionary";
+import { config } from "@/lib/config";
 
 export default function Contact() {
 	const { language } = useLanguage();
 	const t = getDictionary(language);
+	const contactLinks = [
+		{
+			label: t.contact.email,
+			value: "badi3bahida16@gmail.com",
+			icon: <Mail className="w-4 h-4" />,
+			href: "",
+			external: false,
+		},
+		{
+			label: t.contact.linkedin,
+			value: "Badie BAHIDA",
+			href: config.externalLinks.linkedin,
+			icon: <Linkedin className="w-4 h-4" />,
+			external: true,
+		},
+		{
+			label: t.contact.github,
+			value: "Badie16",
+			href: config.externalLinks.github,
+			icon: <Github className="w-4 h-4" />,
+			external: true,
+		},
+	];
 
 	return (
 		<section
@@ -69,24 +93,32 @@ export default function Contact() {
 						</div>
 
 						<div className="grid gap-3 mb-4 text-sm md:text-base">
-							<div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-muted-foreground">
-								<span className="text-white font-medium">
-									{t.contact.email} :
-								</span>{" "}
-								badi3bahida16@gmail.com
-							</div>
-							<div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-muted-foreground">
-								<span className="text-white font-medium">
-									{t.contact.linkedin} :
-								</span>{" "}
-								Badie BAHIDA
-							</div>
-							<div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-muted-foreground">
-								<span className="text-white font-medium">
-									{t.contact.github} :
-								</span>{" "}
-								Badie
-							</div>
+							{contactLinks.map((item) =>
+								item.href ? (
+									<Link
+										key={item.label}
+										href={item.href}
+										target={item.external ? "_blank" : undefined}
+										rel={item.external ? "noopener noreferrer" : undefined}
+										className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-muted-foreground hover:border-primary/50 hover:bg-white/10 transition-colors"
+									>
+										<span className="inline-flex items-center gap-2 text-white font-medium">
+											{item.icon}:
+										</span>{" "}
+										{item.value}
+									</Link>
+								) : (
+									<div
+										key={item.label}
+										className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-muted-foreground"
+									>
+										<span className="inline-flex items-center gap-2 text-white font-medium">
+											{item.icon} :
+										</span>{" "}
+										{item.value}
+									</div>
+								),
+							)}
 						</div>
 					</div>
 				</motion.div>

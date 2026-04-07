@@ -86,7 +86,7 @@ export default function Header() {
 				>
 					<Terminal className="w-6 h-6 text-primary" />
 					<span>
-						Badie<span className="text-primary">.</span>
+						Badi30x<span className="text-primary">.</span>
 					</span>
 				</Link>
 

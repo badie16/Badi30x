@@ -5,8 +5,8 @@ export const config = {
 		process.env.NEXT_PUBLIC_RSS_API_URL ||
 		"https://api.rss2json.com/v1/api.json",
 	externalLinks: {
-		github: process.env.NEXT_PUBLIC_GITHUB_URL || "",
-		linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || "",
+		github: process.env.NEXT_PUBLIC_GITHUB_URL || "https://github.com/Badie16",
+		linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || "https://linkedin.com/in/badie-bahida",
 		twitter: process.env.NEXT_PUBLIC_TWITTER_URL || "",
 		medium: process.env.NEXT_PUBLIC_MEDIUM_URL || "",
 		mediumRss: process.env.NEXT_PUBLIC_MEDIUM_RSS_URL || "",

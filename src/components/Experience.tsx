@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
 import { useLanguage } from "@/components/LanguageProvider";
@@ -11,14 +12,16 @@ const experiences = [
 		company: "ReeWayy",
 		period: "Juil. 2025 – Août 2025",
 		initials: "RW",
-		tone: "bg-cyan-500/15 text-cyan-300 border-cyan-500/30",
+		logo: "/reewayy.png",
+		tone: "bg-cyan-500/15 text-cyan-100",
 	},
 	{
 		id: "df",
 		company: "DevForYou",
 		period: "Juil. 2025",
 		initials: "DF",
-		tone: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
+		logo: "/devforyou.png",
+		tone: "bg-emerald-500/15 text-emerald-100",
 	},
 ];
 
@@ -51,7 +54,7 @@ export default function Experience() {
 						whileInView={{ scaleY: 1 }}
 						viewport={{ once: true, margin: "-100px" }}
 						transition={{ duration: 0.8, ease: "easeOut" }}
-						className="absolute left-0 md:left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-transparent origin-top"
+						className="absolute left-0 md:left-4 top-0 bottom-0 w-0.5 bg-linear-to-b from-primary via-primary/50 to-transparent origin-top"
 					/>
 
 					<div className="space-y-6 md:space-y-8">
@@ -74,7 +77,7 @@ export default function Experience() {
 										type: "spring",
 										stiffness: 200,
 									}}
-									className="absolute -left-[7px] md:left-[9px] top-6 md:top-8 w-4 h-4 rounded-full bg-primary shadow-lg shadow-primary/50 group-hover:scale-125 transition-transform"
+									className="absolute -left-1.75 md:left-2.25 top-6 md:top-8 w-4 h-4 rounded-full bg-primary shadow-lg shadow-primary/50 group-hover:scale-125 transition-transform"
 								>
 									<div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75" />
 								</motion.div>
@@ -88,11 +91,21 @@ export default function Experience() {
 									<div className="flex flex-col gap-4">
 										<div className="flex items-start gap-3 md:gap-4">
 											<div
-												className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center shrink-0 border ${exp.tone}`}
+												className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-black/30 ring-1 ring-white/10 ${exp.tone}`}
 											>
-												<span className="text-sm md:text-base font-bold tracking-[0.2em]">
-													{exp.initials}
-												</span>
+												{exp.logo ? (
+													<Image
+														src={exp.logo}
+														alt={`${exp.company} logo`}
+														width={44}
+														height={44}
+														className="w-9 h-9 md:w-10 md:h-10 object-contain drop-shadow-[0_4px_8px_rgba(0,0,0,0.45)]"
+													/>
+												) : (
+													<span className="text-sm md:text-base font-bold tracking-[0.2em]">
+														{exp.initials}
+													</span>
+												)}
 											</div>
 											<div className="flex-1 min-w-0">
 												<h3 className="text-lg md:text-2xl font-bold text-white group-hover:text-primary transition-colors leading-tight">
