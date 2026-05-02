@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 		default: "Badie BAHIDA",
 		template: "%s | Badie BAHIDA",
 	},
+	themeColor: "#0f172a",
 	description:
 		"Portfolio de Badie BAHIDA, étudiant ingénieur en Sécurité IT & Confiance Numérique. Focus sur le pentest, le SOC, la sécurité applicative et l'IA.",
 	keywords: [
