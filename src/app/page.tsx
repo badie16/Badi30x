@@ -7,12 +7,14 @@ import Contact from "@/components/Contact";
 import Header from "@/components/Header";
 import BackToTop from "@/components/BackToTop";
 import { LanguageProvider } from "@/components/LanguageProvider";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 import SectionTransition, { PageTransition } from "@/components/PageTransition";
 import BootSequence from "@/components/BootSequence";
 
 export default function Home() {
 	return (
-		<LanguageProvider>
+		<ThemeProvider>
+			<LanguageProvider>
 			<PageTransition>
 				<main className="min-h-screen bg-black text-white selection:bg-primary/30">
 					<BootSequence />
@@ -36,6 +38,7 @@ export default function Home() {
 					<BackToTop />
 				</main>
 			</PageTransition>
-		</LanguageProvider>
+			</LanguageProvider>
+		</ThemeProvider>
 	);
 }
