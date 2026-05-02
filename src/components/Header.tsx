@@ -7,6 +7,7 @@ import { Menu, X, Terminal, Languages } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/components/LanguageProvider";
 import { getDictionary } from "@/lib/dictionary";
+import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
 interface NavItem {
 	name: "Home" | "Skills" | "Projects" | "Education" | "Contact";
@@ -90,7 +91,7 @@ export default function Header() {
 					</span>
 				</Link>
 
-				<div className="hidden md:flex items-center gap-6">
+				<div className="hidden md:flex items-center gap-4">
 					<nav className="flex items-center gap-8">
 						{navItems.map((item) => {
 							const isActive =
@@ -124,6 +125,8 @@ export default function Header() {
 							);
 						})}
 					</nav>
+
+					<ThemeSwitcher />
 
 					<button
 						onClick={toggleLanguage}
@@ -173,14 +176,17 @@ export default function Header() {
 									</Link>
 								</motion.div>
 							))}
-							<button
-								onClick={toggleLanguage}
-								className="mt-2 inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-left text-lg font-medium text-white hover:bg-white/10 transition-colors min-h-[44px]"
-								aria-label={t.nav.switchLabel}
-							>
-								<Languages className="w-5 h-5 text-primary" />
-								{language === "fr" ? "EN" : "FR"}
-							</button>
+							<div className="mt-4 pt-4 border-t border-white/10 flex items-center gap-2">
+								<ThemeSwitcher />
+								<button
+									onClick={toggleLanguage}
+									className="flex-1 inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-left text-lg font-medium text-white hover:bg-white/10 transition-colors min-h-[44px]"
+									aria-label={t.nav.switchLabel}
+								>
+									<Languages className="w-5 h-5 text-primary" />
+									{language === "fr" ? "EN" : "FR"}
+								</button>
+							</div>
 						</nav>
 					</motion.div>
 				)}

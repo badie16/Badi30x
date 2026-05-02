@@ -16,12 +16,12 @@ const config: Config = {
                     foreground: "#FFFFFF",
                 },
                 card: {
-                    DEFAULT: "rgba(255, 255, 255, 0.05)",
-                    foreground: "#FFFFFF",
+                    DEFAULT: "var(--card-bg, rgba(255, 255, 255, 0.05))",
+                    foreground: "var(--card-fg, #FFFFFF)",
                 },
                 muted: {
-                    DEFAULT: "rgba(255, 255, 255, 0.1)",
-                    foreground: "#A1A1AA", // Zinc 400
+                    DEFAULT: "var(--muted-bg, rgba(255, 255, 255, 0.1))",
+                    foreground: "var(--muted-fg, #A1A1AA)", // Zinc 400
                 }
             },
             fontFamily: {

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { inter } from "./fonts";
 import "./globals.css";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 
 export const metadata: Metadata = {
 	metadataBase: new URL(
@@ -97,28 +98,48 @@ export default function RootLayout({
 
 	return (
 		<html lang="fr">
+			<head>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
+							(function() {
+								const theme = localStorage.getItem('theme');
+								if (theme) {
+									document.documentElement.setAttribute('data-theme', theme);
+								} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+									document.documentElement.setAttribute('data-theme', 'dark');
+								} else {
+									document.documentElement.setAttribute('data-theme', 'light');
+								}
+							})();
+						`,
+					}}
+				/>
+			</head>
 			<body className={`${inter.variable} font-sans antialiased`}>
-				{/* Microsoft Clarity Analytics */}
-				{process.env.NEXT_PUBLIC_CLARITY_ID && (
-					<script
-						type="text/javascript"
-						dangerouslySetInnerHTML={{
-							__html: `
+				<ThemeProvider>
+					{/* Microsoft Clarity Analytics */}
+					{process.env.NEXT_PUBLIC_CLARITY_ID && (
+						<script
+							type="text/javascript"
+							dangerouslySetInnerHTML={{
+								__html: `
                 (function(c,l,a,r,i,t,y){
                   c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
                   t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
                   y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
                 })(window, document, "clarity", "script", "${process.env.NEXT_PUBLIC_CLARITY_ID}");
               `,
-						}}
-					/>
-				)}
+							}}
+						/>
+					)}
 
-				<script
-					type="application/ld+json"
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-				/>
-				{children}
+					<script
+						type="application/ld+json"
+						dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+					/>
+					{children}
+				</ThemeProvider>
 			</body>
 		</html>
 	);
