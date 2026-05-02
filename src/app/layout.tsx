@@ -97,6 +97,24 @@ export default function RootLayout({
 
 	return (
 		<html lang="fr">
+			<head>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
+							(function() {
+								const theme = localStorage.getItem('theme');
+								if (theme) {
+									document.documentElement.setAttribute('data-theme', theme);
+								} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+									document.documentElement.setAttribute('data-theme', 'dark');
+								} else {
+									document.documentElement.setAttribute('data-theme', 'light');
+								}
+							})();
+						`,
+					}}
+				/>
+			</head>
 			<body className={`${inter.variable} font-sans antialiased`}>
 				{/* Microsoft Clarity Analytics */}
 				{process.env.NEXT_PUBLIC_CLARITY_ID && (

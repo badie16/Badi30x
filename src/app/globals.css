@@ -1,9 +1,23 @@
 @import "tailwindcss";
 
-:root {
+:root,
+[data-theme="dark"] {
 	--background: #000000;
 	--foreground: #ededed;
 	--font-inter: "Inter", sans-serif;
+	--card-bg: rgba(255, 255, 255, 0.05);
+	--card-fg: #ffffff;
+	--muted-bg: rgba(255, 255, 255, 0.1);
+	--muted-fg: #a1a1aa;
+}
+
+[data-theme="light"] {
+	--background: #ffffff;
+	--foreground: #1a1a1a;
+	--card-bg: rgba(0, 0, 0, 0.05);
+	--card-fg: #1a1a1a;
+	--muted-bg: rgba(0, 0, 0, 0.08);
+	--muted-fg: #6b7280;
 }
 
 body {
@@ -11,6 +25,7 @@ body {
 	background: var(--background);
 	font-family: var(--font-inter);
 	overflow-x: hidden;
+	transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .terminal-boot-overlay {
