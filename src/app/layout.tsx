@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 		process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
 	),
 	title: {
-		default: "Badie BAHIDA | Portfolio Cybersécurité",
+		default: "Badie BAHIDA",
 		template: "%s | Badie BAHIDA",
 	},
 	description:
@@ -61,12 +61,12 @@ export const metadata: Metadata = {
 	},
 	icons: {
 		icon: [
-			{ url: "/favicon.ico", sizes: "any" },
-			{ url: "/icon.png", type: "image/png", sizes: "32x32" },
+			{ url: "/logo.png", sizes: "any" },
+			{ url: "/logo.png", type: "image/png", sizes: "32x32" },
 			{ url: "/icon-192.png", type: "image/png", sizes: "192x192" },
 			{ url: "/icon-512.png", type: "image/png", sizes: "512x512" },
 		],
-		apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+		apple: [{ url: "/logo.png", sizes: "180x180", type: "image/png" }],
 	},
 };
 
