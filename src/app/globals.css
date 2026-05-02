@@ -2,22 +2,134 @@
 
 :root,
 [data-theme="dark"] {
-	--background: #000000;
-	--foreground: #ededed;
-	--font-inter: "Inter", sans-serif;
-	--card-bg: rgba(255, 255, 255, 0.05);
-	--card-fg: #ffffff;
-	--muted-bg: rgba(255, 255, 255, 0.1);
-	--muted-fg: #a1a1aa;
+	--bg: #000000;
+	--bg2: #111111;
+	--bg3: #181818;
+	--surface: #0f0f0f;
+	--surface2: #151515;
+	--border-raw: #ffffff0d;
+	--border2-raw: #ffffff14;
+	--text-raw: #ededed;
+	--muted-raw: #a1a1aa;
+	--hint-raw: #71717a;
+	--teal: #10b981;
+	--teal-dim: rgba(16, 185, 129, 0.16);
+	--teal-mid: #34d399;
+	--blue: #60a5fa;
+	--blue-dim: rgba(96, 165, 250, 0.16);
+	--blue-mid: #93c5fd;
+	--purple: #a78bfa;
+	--purple-dim: rgba(167, 139, 250, 0.16);
+	--purple-mid: #c4b5fd;
+	--amber: #f59e0b;
+	--amber-dim: rgba(245, 158, 11, 0.16);
+	--amber-mid: #fbbf24;
+	--coral: #f97316;
+	--coral-dim: rgba(249, 115, 22, 0.16);
+	--coral-mid: #fb923c;
+	--green: #22c55e;
+	--green-dim: rgba(34, 197, 94, 0.16);
+	--background: var(--bg);
+	--foreground: var(--text-raw);
+	--card: var(--surface);
+	--card-foreground: var(--text-raw);
+	--popover: var(--surface);
+	--popover-foreground: var(--text-raw);
+	--primary: var(--teal);
+	--primary-foreground: #fff;
+	--secondary: var(--surface2);
+	--secondary-foreground: var(--text-raw);
+	--muted: var(--bg2);
+	--muted-foreground: var(--muted-raw);
+	--accent: var(--blue-dim);
+	--accent-foreground: var(--blue);
+	--destructive: var(--coral);
+	--destructive-foreground: #fff;
+	--border: var(--border-raw);
+	--input: var(--border2-raw);
+	--ring: var(--blue);
+	--chart-1: var(--teal);
+	--chart-2: var(--blue);
+	--chart-3: var(--purple);
+	--chart-4: var(--amber);
+	--chart-5: var(--coral);
+	--radius: 0.625rem;
+	--sidebar: var(--surface);
+	--sidebar-foreground: var(--text-raw);
+	--sidebar-primary: var(--teal);
+	--sidebar-primary-foreground: #fff;
+	--sidebar-accent: var(--bg2);
+	--sidebar-accent-foreground: var(--text-raw);
+	--sidebar-border: var(--border-raw);
+	--sidebar-ring: var(--blue);
 }
 
 [data-theme="light"] {
-	--background: #ffffff;
-	--foreground: #1a1a1a;
-	--card-bg: rgba(0, 0, 0, 0.05);
-	--card-fg: #1a1a1a;
-	--muted-bg: rgba(0, 0, 0, 0.08);
-	--muted-fg: #6b7280;
+	--bg: #f6f1e8;
+	--bg2: #efe7d9;
+	--bg3: #e6dcc8;
+	--surface: #fffaf1;
+	--surface2: #f4ecde;
+	--border-raw: #0000000d;
+	--border2-raw: #00000012;
+	--text-raw: #201a14;
+	--muted-raw: #6f6558;
+	--hint-raw: #9b8e7b;
+	--teal: #1c8f78;
+	--teal-dim: #d7f0e7;
+	--teal-mid: #4eb89f;
+	--blue: #4d79d8;
+	--blue-dim: #dbe6fb;
+	--blue-mid: #6b8fe1;
+	--purple: #8a63d2;
+	--purple-dim: #ece3fb;
+	--purple-mid: #a989e4;
+	--amber: #c78318;
+	--amber-dim: #f7e6bf;
+	--amber-mid: #e1ab49;
+	--coral: #c95a4c;
+	--coral-dim: #f7d9d4;
+	--coral-mid: #df8176;
+	--green: #4b9d53;
+	--green-dim: #dff0dd;
+	--background: var(--bg);
+	--foreground: var(--text-raw);
+	--card: var(--surface);
+	--card-foreground: var(--text-raw);
+	--popover: var(--surface);
+	--popover-foreground: var(--text-raw);
+	--primary: var(--teal);
+	--primary-foreground: #fff;
+	--secondary: var(--surface2);
+	--secondary-foreground: var(--text-raw);
+	--muted: var(--bg2);
+	--muted-foreground: var(--muted-raw);
+	--accent: var(--blue-dim);
+	--accent-foreground: var(--blue);
+	--destructive: var(--coral);
+	--destructive-foreground: #fff;
+	--border: var(--border-raw);
+	--input: var(--border2-raw);
+	--ring: var(--blue);
+	--chart-1: var(--teal);
+	--chart-2: var(--blue);
+	--chart-3: var(--purple);
+	--chart-4: var(--amber);
+	--chart-5: var(--coral);
+	--radius: 0.625rem;
+	--sidebar: var(--surface);
+	--sidebar-foreground: var(--text-raw);
+	--sidebar-primary: var(--teal);
+	--sidebar-primary-foreground: #fff;
+	--sidebar-accent: var(--bg2);
+	--sidebar-accent-foreground: var(--text-raw);
+	--sidebar-border: var(--border-raw);
+	--sidebar-ring: var(--blue);
+	--card-bg: var(--surface);
+	--card-fg: var(--text-raw);
+	--muted-bg: var(--bg2);
+	--muted-fg: var(--muted-raw);
+	--border: var(--border-raw);
 }
 
 body {
@@ -25,7 +137,9 @@ body {
 	background: var(--background);
 	font-family: var(--font-inter);
 	overflow-x: hidden;
-	transition: background-color 0.3s ease, color 0.3s ease;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
 }
 
 .terminal-boot-overlay {

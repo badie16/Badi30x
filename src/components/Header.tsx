@@ -126,7 +126,7 @@ export default function Header() {
 						})}
 					</nav>
 
-					<ThemeSwitcher />
+					{/* <ThemeSwitcher /> */}
 
 					<button
 						onClick={toggleLanguage}
