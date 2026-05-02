@@ -7,7 +7,6 @@ import { Menu, X, Terminal, Languages } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/components/LanguageProvider";
 import { getDictionary } from "@/lib/dictionary";
-import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
 interface NavItem {
 	name: "Home" | "Skills" | "Projects" | "Education" | "Contact";
@@ -41,6 +40,8 @@ export default function Header() {
 	useEffect(() => {
 		const handleScroll = () => {
 			setScrolled(window.scrollY > 50);
+			// Fermer le menu mobile au scroll
+			if (isOpen) setIsOpen(false);
 		};
 
 		const observer = new IntersectionObserver(
@@ -58,8 +59,7 @@ export default function Header() {
 
 		navItems.forEach((item) => {
 			if (item.href.startsWith("#") && item.href !== "#") {
-				const sectionId = item.href.substring(1);
-				const element = document.getElementById(sectionId);
+				const element = document.getElementById(item.href.substring(1));
 				if (element) observer.observe(element);
 			}
 		});
@@ -69,7 +69,7 @@ export default function Header() {
 			window.removeEventListener("scroll", handleScroll);
 			observer.disconnect();
 		};
-	}, []);
+	}, [isOpen]);
 
 	return (
 		<header
@@ -81,38 +81,39 @@ export default function Header() {
 			)}
 		>
 			<div className="max-w-7xl mx-auto px-4 md:px-10 flex justify-between items-center">
+				{/* Logo avec hover rotation */}
 				<Link
 					href="#"
-					className="flex items-center gap-2 text-xl font-bold tracking-tighter"
+					className="group flex items-center gap-2 text-xl font-bold tracking-tighter"
 				>
-					<Terminal className="w-6 h-6 text-primary" />
+					<Terminal className="w-6 h-6 text-primary transition-transform duration-300 group-hover:rotate-12" />
 					<span>
 						Badi30x<span className="text-primary">.</span>
 					</span>
 				</Link>
 
+				{/* Desktop nav */}
 				<div className="hidden md:flex items-center gap-4">
 					<nav className="flex items-center gap-8">
 						{navItems.map((item) => {
 							const isActive =
 								activeSection === item.href.substring(1) ||
 								(item.href === "#" && activeSection === "");
-							const isExternal = item.external;
 
 							return (
 								<Link
 									key={item.name}
 									href={item.href}
-									target={isExternal ? "_blank" : undefined}
+									target={item.external ? "_blank" : undefined}
 									className={cn(
 										"text-sm font-medium transition-colors relative",
-										isActive && !isExternal
+										isActive && !item.external
 											? "text-white"
 											: "text-muted-foreground hover:text-white",
 									)}
 								>
 									{labels[item.name]}
-									{isActive && !isExternal && (
+									{isActive && !item.external && (
 										<motion.div
 											layoutId="activeNav"
 											className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
@@ -126,28 +127,69 @@ export default function Header() {
 						})}
 					</nav>
 
-					{/* <ThemeSwitcher /> */}
-
+					{/* Bouton langue clair FR / EN */}
 					<button
 						onClick={toggleLanguage}
 						className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white hover:bg-white/10 transition-colors"
 						aria-label={t.nav.switchLabel}
 					>
 						<Languages className="w-4 h-4 text-primary" />
-						{language === "fr" ? "FR" : "EN"}
+						<span
+							className={cn(
+								language === "fr"
+									? "font-bold text-white"
+									: "text-muted-foreground",
+							)}
+						>
+							FR
+						</span>
+						<span className="opacity-30">/</span>
+						<span
+							className={cn(
+								language === "en"
+									? "font-bold text-white"
+									: "text-muted-foreground",
+							)}
+						>
+							EN
+						</span>
 					</button>
 				</div>
 
+				{/* Burger mobile */}
 				<button
 					className="md:hidden text-white p-3 -mr-3 min-w-[44px] min-h-[44px] flex items-center justify-center touch-manipulation"
 					onClick={() => setIsOpen(!isOpen)}
 					aria-label={isOpen ? "Close menu" : "Open menu"}
 					aria-expanded={isOpen}
 				>
-					{isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+					<AnimatePresence mode="wait" initial={false}>
+						{isOpen ? (
+							<motion.div
+								key="close"
+								initial={{ rotate: -90, opacity: 0 }}
+								animate={{ rotate: 0, opacity: 1 }}
+								exit={{ rotate: 90, opacity: 0 }}
+								transition={{ duration: 0.15 }}
+							>
+								<X className="w-6 h-6" />
+							</motion.div>
+						) : (
+							<motion.div
+								key="menu"
+								initial={{ rotate: 90, opacity: 0 }}
+								animate={{ rotate: 0, opacity: 1 }}
+								exit={{ rotate: -90, opacity: 0 }}
+								transition={{ duration: 0.15 }}
+							>
+								<Menu className="w-6 h-6" />
+							</motion.div>
+						)}
+					</AnimatePresence>
 				</button>
 			</div>
 
+			{/* Menu mobile */}
 			<AnimatePresence>
 				{isOpen && (
 					<motion.div
@@ -158,33 +200,66 @@ export default function Header() {
 						className="absolute top-full left-0 w-full bg-black/95 backdrop-blur-md border-b border-white/10 overflow-hidden md:hidden"
 					>
 						<nav className="flex flex-col p-4 gap-2">
-							{navItems.map((item, index) => (
-								<motion.div
-									key={item.name}
-									initial={{ opacity: 0, x: -20 }}
-									animate={{ opacity: 1, x: 0 }}
-									exit={{ opacity: 0, x: -20 }}
-									transition={{ delay: index * 0.1, duration: 0.2 }}
-								>
-									<Link
-										href={item.href}
-										target={item.external ? "_blank" : undefined}
-										className="block text-lg font-medium text-muted-foreground hover:text-white transition-colors py-3 px-4 rounded-lg hover:bg-white/5 min-h-[44px] touch-manipulation"
-										onClick={() => setIsOpen(false)}
+							{navItems.map((item, index) => {
+								const isActive =
+									activeSection === item.href.substring(1) ||
+									(item.href === "#" && activeSection === "");
+
+								return (
+									<motion.div
+										key={item.name}
+										initial={{ opacity: 0, x: -20 }}
+										animate={{ opacity: 1, x: 0 }}
+										exit={{ opacity: 0, x: -20 }}
+										transition={{ delay: index * 0.1, duration: 0.2 }}
 									>
-										{labels[item.name]}
-									</Link>
-								</motion.div>
-							))}
-							<div className="mt-4 pt-4 border-t border-white/10 flex items-center gap-2">
-								<ThemeSwitcher />
+										<Link
+											href={item.href}
+											target={item.external ? "_blank" : undefined}
+											className={cn(
+												"flex items-center justify-between text-lg font-medium transition-colors py-3 px-4 rounded-lg min-h-[44px] touch-manipulation",
+												isActive
+													? "text-white bg-white/5 border-l-2 border-primary pl-3"
+													: "text-muted-foreground hover:text-white hover:bg-white/5",
+											)}
+											onClick={() => setIsOpen(false)}
+										>
+											{labels[item.name]}
+											{isActive && (
+												<span className="w-1.5 h-1.5 rounded-full bg-primary" />
+											)}
+										</Link>
+									</motion.div>
+								);
+							})}
+
+							{/* Footer du menu mobile */}
+							<div className="mt-4 pt-4 border-t border-white/10">
 								<button
 									onClick={toggleLanguage}
-									className="flex-1 inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-left text-lg font-medium text-white hover:bg-white/10 transition-colors min-h-[44px]"
+									className="w-full inline-flex items-center justify-center gap-3 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-lg font-medium text-white hover:bg-white/10 transition-colors min-h-[44px]"
 									aria-label={t.nav.switchLabel}
 								>
 									<Languages className="w-5 h-5 text-primary" />
-									{language === "fr" ? "EN" : "FR"}
+									<span
+										className={cn(
+											language === "fr"
+												? "font-bold text-white"
+												: "text-muted-foreground",
+										)}
+									>
+										FR
+									</span>
+									<span className="opacity-30">/</span>
+									<span
+										className={cn(
+											language === "en"
+												? "font-bold text-white"
+												: "text-muted-foreground",
+										)}
+									>
+										EN
+									</span>
 								</button>
 							</div>
 						</nav>
