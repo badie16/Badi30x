@@ -13,28 +13,32 @@ const projects = [
 		title: "Détection d’anomalies dans les logs (SOC)",
 		tags: ["Python", "Scikit-learn", "Analyse de logs"],
 		color: "bg-cyan-500",
-		image: "/hero_bg.png",
+		image: "/detectionAnomaly.png",
+		link: "github.com/Badie16/SentinelLogs",
 	},
 	{
 		id: "p2",
 		title: "ModStrike",
 		tags: ["Python", "PyQt6", "PyModbus"],
 		color: "bg-orange-500",
-		image: "/takeover_bg.png",
+		image: "/ModStrike.png",
+		link: "github.com/Badie16/ModStrike",
 	},
 	{
 		id: "p3",
 		title: "AuditQuest",
 		tags: ["Phaser3", "Colyseus", "WebRTC"],
 		color: "bg-emerald-500",
-		image: "/packet_sniffer_bg.png",
+		image: "/AuditQuest.png",
+		link: "github.com/Badie16/AuditQuest",
 	},
 	{
 		id: "p4",
 		title: "PhytoVigil",
 		tags: ["React Native", "FastAPI", "PostgreSQL"],
 		color: "bg-violet-500",
-		image: "/recon_bg.png",
+		image: "/PhytoVigil.png",
+		link: "github.com/Badie16/PhytoVigil",
 	},
 ];
 
@@ -105,7 +109,10 @@ export default function Projects() {
 						</p>
 					</div>
 					<span className="hidden md:inline-flex items-center gap-2 text-muted-foreground">
-						{t.projects.caption} <ArrowUpRight className="w-4 h-4" />
+						{/*to github  badie16*/}												
+						{t.projects.caption} <a href="https://github.com/Badie16" target="_blank" rel="noopener noreferrer">
+							<ArrowUpRight className="w-4 h-4" />
+						</a>
 					</span>
 				</motion.div>
 
@@ -261,7 +268,9 @@ function ProjectCard({ t, project, index }: ProjectCardProps) {
 					</div>
 				</div>
 				<div className="p-3 rounded-full border border-white/10 group-hover:bg-primary group-hover:border-primary transition-colors">
-					<ArrowUpRight className="w-5 h-5" />
+					<a href={`https://${project.link}`} target="_blank">
+						<ArrowUpRight className="w-5 h-5" />
+					</a>
 				</div>
 			</div>
 		</>
