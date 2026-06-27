@@ -30,11 +30,10 @@ import {
 	FileSearch,
 	Bot,
 	Lock,
-	Globe,
+	
 	Activity,
 	Search,
-	Eye,
-} from "lucide-react";
+	} from "lucide-react";
 import { useLanguage } from "@/components/LanguageProvider";
 import { getDictionary } from "@/lib/dictionary";
 

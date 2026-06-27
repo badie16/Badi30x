@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Code2, GraduationCap, MapPin, Shield, FileText, ChevronDown } from "lucide-react";
+import { Shield, FileText, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/components/LanguageProvider";
 import { getDictionary } from "@/lib/dictionary";
 
