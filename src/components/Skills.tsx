@@ -7,6 +7,8 @@ import {
 	SiTailwindcss,
 	SiJavascript,
 	SiC,
+	SiCplusplus,
+	SiPhp,
 	SiGnubash,
 	SiKalilinux,
 	SiWireshark,
@@ -14,6 +16,8 @@ import {
 	SiMetasploit,
 	SiFastapi,
 	SiPostgresql,
+	SiLinux,
+	SiGit,
 } from "react-icons/si";
 import {
 	Shield,
@@ -25,6 +29,11 @@ import {
 	Network,
 	FileSearch,
 	Bot,
+	Lock,
+	Globe,
+	Activity,
+	Search,
+	Eye,
 } from "lucide-react";
 import { useLanguage } from "@/components/LanguageProvider";
 import { getDictionary } from "@/lib/dictionary";
@@ -36,10 +45,13 @@ const skills = [
 		items: [
 			{ name: "XSS / CSRF / SQLi", icon: <Shield /> },
 			{ name: "Pentest web", icon: <SiBurpsuite /> },
-			{ name: "Nmap", icon: <SiKalilinux /> },
-			{ name: "Reverse engineering", icon: <FileSearch /> },
 			{ name: "Wireshark", icon: <SiWireshark /> },
 			{ name: "Metasploit", icon: <SiMetasploit /> },
+
+			{ name: "SAST/DAST", icon: <FileSearch /> },
+			{ name: "Reverse engineering", icon: <FileSearch /> },
+			{ name: "Nmap", icon: <SiKalilinux /> },
+			{ name: "Cryptography", icon: <Lock /> },
 		],
 		className:
 			"md:col-span-2 md:row-span-1 bg-indigo-900/20 border-indigo-500/20",
@@ -51,10 +63,17 @@ const skills = [
 			{ name: "Analyse de logs", icon: <Database /> },
 			{ name: "Détection d'intrusions", icon: <Shield /> },
 			{ name: "TCP/IP", icon: <Network /> },
-			{ name: "IDS / IPS", icon: <Shield /> },
 			{ name: "SOC", icon: <Database /> },
+
+			{ name: "IDS / IPS", icon: <Shield /> },
+			{ name: "SIEM", icon: <Search /> },
+			{ name: "Active Directory", icon: <Users /> },
 			{ name: "Docker", icon: <FaDocker /> },
-			{ name: "Wireshark", icon: <SiWireshark /> },
+
+			{ name: "Analyse trafic réseau", icon: <Activity /> },
+			{ name: "Sécurité réseau", icon: <Shield /> },
+			{ name: "Splunk", icon: <Search /> },
+			{ name: "Wazuh", icon: <Shield /> },
 		],
 		className:
 			"md:col-span-2 md:row-span-1 bg-neutral-900/50 border-neutral-800",
@@ -67,11 +86,16 @@ const skills = [
 			{ name: "Bash", icon: <SiGnubash /> },
 			{ name: "JavaScript", icon: <SiJavascript /> },
 			{ name: "C", icon: <SiC /> },
+			{ name: "C++", icon: <SiCplusplus /> },
+			{ name: "PHP", icon: <SiPhp /> },
+			{ name: "SQL", icon: <Database /> },
 			{ name: "React", icon: <FaReact /> },
 			{ name: "Next.js", icon: <SiNextdotjs /> },
 			{ name: "Tailwind CSS", icon: <SiTailwindcss /> },
 			{ name: "FastAPI", icon: <SiFastapi /> },
 			{ name: "PostgreSQL", icon: <SiPostgresql /> },
+			{ name: "Linux", icon: <SiLinux /> },
+			{ name: "Git", icon: <SiGit /> },
 		],
 		className: "md:col-span-2 bg-neutral-900/50 border-neutral-800",
 	},
@@ -84,6 +108,7 @@ const skills = [
 			{ name: "PLC", icon: <Shield /> },
 			{ name: "ISO 27001 / 27002", icon: <FileSearch /> },
 			{ name: "Audit sécurité", icon: <Shield /> },
+			{ name: "Sécurité systèmes industriels", icon: <Shield /> },
 		],
 		className: "md:col-span-2 bg-neutral-900/50 border-neutral-800",
 	},
@@ -93,7 +118,7 @@ const skills = [
 		items: [
 			{ name: "Machine Learning", icon: <Brain /> },
 			{ name: "Détection d'anomalies", icon: <Zap /> },
-			{ name: "Data analysis", icon: <Database /> },
+			{ name: "Data Mining / Data Analysis", icon: <Database /> },
 		],
 		className: "md:col-span-1 bg-emerald-900/20 border-emerald-500/20",
 	},
