@@ -107,6 +107,11 @@ export const dictionary = {
 				l3: "Agadir, Maroc",
 			},
 		},
+		resume: {
+			viewResume: "Voir mon CV",
+			frLabel: "CV Français",
+			enLabel: "CV Anglais",
+		},
 		contact: {
 			titleTop: "Une opportunité de travail ou freelance ?",
 			titleBottom: "Parlons-en",
@@ -222,6 +227,11 @@ export const dictionary = {
 				l2: "Taroudant, Morocco",
 				l3: "Agadir, Morocco",
 			},
+		},
+		resume: {
+			viewResume: "View Resume",
+			frLabel: "French CV",
+			enLabel: "English CV",
 		},
 		contact: {
 			titleTop: "Got a project in mind?",

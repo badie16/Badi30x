@@ -1,13 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Code2, GraduationCap, MapPin, Shield } from "lucide-react";
+import { Code2, GraduationCap, MapPin, Shield, FileText, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/components/LanguageProvider";
 import { getDictionary } from "@/lib/dictionary";
 
 export default function Hero() {
 	const { language } = useLanguage();
 	const t = getDictionary(language);
+	const [resumeOpen, setResumeOpen] = useState(false);
 
 	return (
 		<section className="min-h-screen flex flex-col justify-center px-4 md:px-10 pt-24 relative overflow-hidden">
@@ -35,19 +37,38 @@ export default function Hero() {
 						{t.hero.description}
 					</p>
 
-					<div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground mb-8">
-						<span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2">
-							<MapPin className="w-4 h-4 text-primary" />
-							{t.hero.location}
-						</span>
-						<span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2">
-							<GraduationCap className="w-4 h-4 text-primary" />
-							ENSIASD
-						</span>
-						<span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2">
-							<Code2 className="w-4 h-4 text-primary" />
-							Python, C, JavaScript
-						</span>
+					<div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground mb-8 relative">
+						<button
+							onClick={() => setResumeOpen(!resumeOpen)}
+							onBlur={() => setTimeout(() => setResumeOpen(false), 150)}
+							className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 hover:bg-white/10 transition-colors cursor-pointer"
+						>
+							<FileText className="w-4 h-4 text-primary" />
+							{t.resume.viewResume}
+							<ChevronDown className={`w-4 h-4 transition-transform ${resumeOpen ? "rotate-180" : ""}`} />
+						</button>
+						{resumeOpen && (
+							<div className="absolute bottom-full left-0 mb-2 w-48 rounded-xl border border-white/10 bg-black/90 backdrop-blur-xl shadow-xl overflow-hidden z-50">
+								<a
+									href="/BADIE_BAHIDA_CV_FR.pdf"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="flex items-center gap-3 px-4 py-3 hover:bg-white/10 transition-colors"
+								>
+									<FileText className="w-4 h-4 text-primary" />
+									{t.resume.frLabel}
+								</a>
+								<a
+									href="/BADIE_BAHIDA_CV_ENG.pdf"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="flex items-center gap-3 px-4 py-3 hover:bg-white/10 transition-colors border-t border-white/10"
+								>
+									<FileText className="w-4 h-4 text-primary" />
+									{t.resume.enLabel}
+								</a>
+							</div>
+						)}
 					</div>
 
 					
