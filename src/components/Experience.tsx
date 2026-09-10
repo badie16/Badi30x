@@ -8,9 +8,25 @@ import { getDictionary } from "@/lib/dictionary";
 
 const experiences = [
 	{
+		id: "sat",
+		company: "Smart Automation Technologies",
+		period: "Juil. 2026 – Sept. 2026",
+		initials: "SA",
+		logo: "/logoSAT.png",
+		tone: "bg-violet-500/15 text-violet-100",
+	},
+	{
+		id: "cmrpi",
+		company: "CMRPI",
+		period: "Juil. 2026 – Août 2026",
+		initials: "CM",
+		logo: "/logoCMRPI.png",
+		tone: "bg-orange-500/15 text-orange-100",
+	},
+	{
 		id: "rw",
 		company: "ReeWayy",
-		period: "Juil. 2025 – Août 2025",
+		period: "Juil. 2025 – Sept. 2025",
 		initials: "RW",
 		logo: "/reewayy.png",
 		tone: "bg-cyan-500/15 text-cyan-100",
@@ -18,7 +34,7 @@ const experiences = [
 	{
 		id: "df",
 		company: "DevForYou",
-		period: "Juil. 2025",
+		period: "Juil. 2025 – Août 2025",
 		initials: "DF",
 		logo: "/devforyou.png",
 		tone: "bg-emerald-500/15 text-emerald-100",

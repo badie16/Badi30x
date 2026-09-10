@@ -45,20 +45,34 @@ export const dictionary = {
 		experience: {
 			title: "Expériences",
 			description:
-				"Deux expériences qui montrent à la fois une pratique du développement sécurisé et une sensibilité à la sécurité applicative.",
+				"Quatre expériences alliant sécurité applicative, AI Security et Threat Intelligence, du développement sécurisé à la détection de vulnérabilités OWASP/CWE.",
 			roles: {
+				sat: "Stagiaire AI Security Engineer",
+				cmrpi: "Stagiaire Cyber Threat Intelligence & IA",
 				rw: "Stagiaire Développeur Frontend",
 				df: "Stagiaire Ingénieur Full Stack",
 			},
 			locations: {
+				sat: "Télétravail, Maroc",
+				cmrpi: "Kénitra, Maroc",
 				rw: "Remote, France",
-				df: "Maroc",
+				df: "Agadir, Maroc",
 			},
 			summary: {
+				sat: "Conception d'une plateforme d'analyse automatique de la sécurité du code avec SAST, DAST et SCA.",
+				cmrpi: "Développement d'une plateforme IA de détection précoce des cybermenaces pour les PME.",
 				rw: "Développement de la plateforme B2B SuppWayy avec Next.js et Tailwind CSS.",
 				df: "Développement de PhytoVigil avec React Native, FastAPI et PostgreSQL.",
 			},
 			highlights: {
+				sat: [
+					"Intégration SAST, DAST et SCA pour détecter vulnérabilités et mauvaises pratiques.",
+					"Pipeline LLM/RAG pour expliquer, corriger et prioriser selon OWASP et CWE.",
+				],
+				cmrpi: [
+					"Pipelines CTI et modèles ML pour identifier les menaces émergentes.",
+					"Système d'alerte multicanal temps réel pour la détection des menaces.",
+				],
 				rw: [
 					"Validation des entrées et réduction des risques XSS/CSRF côté frontend.",
 					"Intégration sécurisée avec APIs backend via gestion des tokens d'authentification.",
@@ -166,20 +180,34 @@ export const dictionary = {
 		experience: {
 			title: "Experience",
 			description:
-				"Two experiences showing both secure development practice and an application security mindset.",
+				"Four experiences combining application security, AI Security and Threat Intelligence, from secure development to OWASP/CWE vulnerability detection.",
 			roles: {
+				sat: "AI Security Engineer Intern",
+				cmrpi: "Cyber Threat Intelligence & AI Intern",
 				rw: "Frontend Developer Intern",
 				df: "Full Stack Engineering Intern",
 			},
 			locations: {
+				sat: "Remote, Morocco",
+				cmrpi: "Kenitra, Morocco",
 				rw: "Remote, France",
-				df: "Morocco",
+				df: "Agadir, Morocco",
 			},
 			summary: {
+				sat: "Designed an automated source-code security analysis platform with SAST, DAST and SCA.",
+				cmrpi: "Built an AI-powered early cyber-threat detection platform for SMBs.",
 				rw: "Developed the SuppWayy B2B platform using Next.js and Tailwind CSS.",
 				df: "Built PhytoVigil with React Native, FastAPI, and PostgreSQL.",
 			},
 			highlights: {
+				sat: [
+					"Integrated SAST, DAST and SCA to detect vulnerabilities and bad practices.",
+					"LLM/RAG pipeline to explain, fix and prioritize findings per OWASP and CWE.",
+				],
+				cmrpi: [
+					"CTI collection pipelines and ML models to identify emerging threats.",
+					"Real-time multichannel alerting system for threat detection.",
+				],
 				rw: [
 					"Implemented input validation and reduced frontend XSS/CSRF risk.",
 					"Delivered secure backend API integration with auth token handling.",

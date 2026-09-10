@@ -32,9 +32,9 @@ export default function Contact() {
 	const contactLinks = [
 		{
 			label: t.contact.email,
-			value: "badi3bahida16@gmail.com",
+			value: "badie.bahida.it@gmail.com",
 			icon: <Mail className="w-4 h-4" />,
-			href: "mailto:badi3bahida16@gmail.com",
+			href: "mailto:badie.bahida.it@gmail.com",
 			external: false,
 		},
 		{
@@ -87,7 +87,7 @@ export default function Contact() {
 					</h2>
 
 					<Link
-						href="mailto:badi3bahida16@gmail.com"
+						href="mailto:badie.bahida.it@gmail.com"
 						className="relative overflow-hidden group inline-flex items-center gap-2 px-8 py-4 bg-primary text-white rounded-full text-lg font-medium hover:bg-primary/90 transition-colors"
 					>
 						<span className="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500 skew-x-12" />

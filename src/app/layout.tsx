@@ -82,7 +82,7 @@ export default function RootLayout({
 		name: "Badie BAHIDA",
 		jobTitle: "Étudiant ingénieur en Sécurité IT & Confiance Numérique",
 		url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
-		email: "badi3bahida16@gmail.com",
+		email: "badie.bahida.it@gmail.com",
 		description:
 			"Étudiant ingénieur en Sécurité IT & Confiance Numérique, orienté pentest, SOC, sécurité applicative et détection d'anomalies.",
 		image: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/og-image.png`,
