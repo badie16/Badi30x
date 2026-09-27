@@ -11,7 +11,7 @@ const Education = () => {
     {
       date: language === "fr" ? "2024 – Présent" : "2024 – Present",
       title: t.education.items.e1,
-      subtitle: `ENSIASD, ${t.education.items.l1}`,
+      subtitle: `${language === "fr" ? "Ecole Nationale Supérieure de l'Intelligence Artificielle et Sciences des Données" : "National School of Artificial Intelligence and Data Sciences"}, ${t.education.items.l1}`,
     },
     {
       date: "2022 – 2024",
