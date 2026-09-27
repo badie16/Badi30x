@@ -66,7 +66,7 @@ export const educationData: EducationItem[] = [
   {
     date: "2024 - Present",
     title: "Engineering Cycle – IT Security & Digital Trust",
-    subtitle: "ENSIASD, Taroudant, Morocco",
+    subtitle: "National School of Artificial Intelligence and Data Sciences, Taroudant, Morocco",
   },
   {
     date: "2022 - 2024",
