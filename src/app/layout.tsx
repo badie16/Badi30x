@@ -1,6 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { ThemeProvider } from "next-themes";
 import { inter } from "./fonts";
 import "./globals.css";
+import { LanguageProvider } from "@/components/LanguageProvider";
 
 export const metadata: Metadata = {
 	metadataBase: new URL(
@@ -63,12 +65,18 @@ export const metadata: Metadata = {
 	icons: {
 		icon: [
 			{ url: "/favicon.ico", sizes: "any" },
-			{ url: "/logo.png", type: "image/png", sizes: "32x32" },
-			{ url: "/logo.png", type: "image/png", sizes: "192x192" },
-			{ url: "/logo.png", type: "image/png", sizes: "512x512" },
+			{ url: "/images/branding/logo.png", type: "image/png", sizes: "32x32" },
+			{ url: "/images/branding/logo.png", type: "image/png", sizes: "192x192" },
+			{ url: "/images/branding/logo.png", type: "image/png", sizes: "512x512" },
 		],
-		apple: [{ url: "/logo.png", sizes: "180x180", type: "image/png" }],
+		apple: [{ url: "/images/branding/logo.png", sizes: "180x180", type: "image/png" }],
 	},
+};
+
+export const viewport: Viewport = {
+	width: "device-width",
+	initialScale: 1,
+	maximumScale: 5,
 };
 
 export default function RootLayout({
@@ -80,7 +88,7 @@ export default function RootLayout({
 		"@context": "https://schema.org",
 		"@type": "Person",
 		name: "Badie BAHIDA",
-		jobTitle: "Étudiant ingénieur en Sécurité IT & Confiance Numérique",
+		jobTitle: "Cybersecurity & DevSecOps Engineer",
 		url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
 		email: "badie.bahida.it@gmail.com",
 		description:
@@ -97,47 +105,17 @@ export default function RootLayout({
 	};
 
 	return (
-		<html lang="fr" data-theme="dark" suppressHydrationWarning>
-			<head>
-				<script
-					dangerouslySetInnerHTML={{
-						__html: `
-							(function() {
-								const theme = localStorage.getItem('theme');
-								if (theme) {
-									document.documentElement.setAttribute('data-theme', theme);
-								} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-									document.documentElement.setAttribute('data-theme', 'dark');
-								} else {
-									document.documentElement.setAttribute('data-theme', 'light');
-								}
-							})();
-						`,
-					}}
-				/>
-			</head>
+		<html lang="fr" suppressHydrationWarning>
 			<body className={`${inter.variable} font-sans antialiased`}>
-				{/* Microsoft Clarity Analytics */}
-				{process.env.NEXT_PUBLIC_CLARITY_ID && (
-					<script
-						type="text/javascript"
-						dangerouslySetInnerHTML={{
-							__html: `
-                (function(c,l,a,r,i,t,y){
-                  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-                })(window, document, "clarity", "script", "${process.env.NEXT_PUBLIC_CLARITY_ID}");
-              `,
-						}}
-					/>
-				)}
-
-				<script
-					type="application/ld+json"
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-				/>
-				{children}
+				<ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+					<LanguageProvider>
+						<script
+							type="application/ld+json"
+							dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+						/>
+						{children}
+					</LanguageProvider>
+				</ThemeProvider>
 			</body>
 		</html>
 	);
