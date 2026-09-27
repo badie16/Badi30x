@@ -33,7 +33,7 @@ export default function Error({
                 </h1>
 
                 <p className="text-muted-foreground mb-8">
-                    An unexpected error occurred. Don't worry, it's not your fault.
+                    An unexpected error occurred. Don&apos;t worry, it&apos;s not your fault.
                 </p>
 
                 <button
