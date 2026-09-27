@@ -1,35 +1,13 @@
 "use client";
 
-import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/components/LanguageProvider";
 import { getDictionary } from "@/lib/dictionary";
-import { config } from "@/lib/config";
 
 export default function Contact() {
 	const { language } = useLanguage();
 	const t = getDictionary(language);
-
-	const links = [
-		{
-			label: t.contact.email,
-			value: "badie.bahida.it@gmail.com",
-			href: "mailto:badie.bahida.it@gmail.com",
-			icon: <Mail size={18} />,
-		},
-		{
-			label: t.contact.linkedin,
-			value: "Badie BAHIDA",
-			href: config.externalLinks.linkedin,
-			icon: <Linkedin size={18} />,
-		},
-		{
-			label: t.contact.github,
-			value: "Badie16",
-			href: config.externalLinks.github,
-			icon: <Github size={18} />,
-		},
-	];
 
 	return (
 		<section id="contact">
@@ -54,22 +32,6 @@ export default function Contact() {
 									className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
 								/>
 							</Link>
-						</div>
-						<div className="flex flex-col gap-3">
-							{links.map((item) => (
-								<Link
-									key={item.label}
-									href={item.href}
-									target={item.href.startsWith("http") ? "_blank" : undefined}
-									className="flex items-center gap-3 rounded-xl border border-primary/20 px-4 py-3 hover:bg-primary/5 transition"
-								>
-									{item.icon}
-									<span className="text-sm">
-										<span className="font-medium text-primary">{item.label}:</span>{" "}
-										<span className="text-secondary">{item.value}</span>
-									</span>
-								</Link>
-							))}
 						</div>
 					</div>
 				</div>
