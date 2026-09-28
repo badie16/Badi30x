@@ -211,7 +211,7 @@ export const dictionary = {
 				"Le parcours académique qui soutient mon orientation vers la cybersécurité, les réseaux et l'intelligence artificielle.",
 			items: {
 				e1: "Cycle Ingénieur – Sécurité IT & Confiance Numérique",
-				e2: "DEUP Informatique – Mention Bien",
+				e2: "DEUP Informatique : Génie informatique",
 				e3: "Baccalauréat – Maintenance Informatique et Réseaux",
 				l1: "Taroudant, Maroc",
 				l2: "Taroudant, Maroc",
@@ -443,7 +443,7 @@ export const dictionary = {
 				"Academic path supporting a strong orientation toward cybersecurity, networking, and applied AI.",
 			items: {
 				e1: "Engineering Cycle – IT Security & Digital Trust",
-				e2: "DEUP in Computer Science – Honours",
+				e2: "DEUP in Computer Science: Software Engineering",
 				e3: "Baccalaureate – IT Maintenance & Networks",
 				l1: "Taroudant, Morocco",
 				l2: "Taroudant, Morocco",
