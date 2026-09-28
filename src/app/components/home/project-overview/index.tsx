@@ -35,14 +35,14 @@ const projects: Project[] = [
   },
   {
     id: "cti",
-    title: "CTI & Malicious URL Detection",
+    title: "threadRadar",
     image: "/images/projects/cti-url-detection-bg.png",
     tags: ["Python", "Random Forest", "Isolation Forest", "Threat Intelligence"],
     repo: config.externalLinks.github,
   },
   {
     id: "hdfs",
-    title: "HDFS Log Anomaly Detection",
+    title: "SentinelLogs",
     image: "/images/projects/hdfs-anomaly-bg.png",
     tags: ["Python", "scikit-learn", "Isolation Forest", "Random Forest"],
     repo: "https://github.com/Badie16/SentinelLogs",
@@ -111,20 +111,9 @@ const ProjectOverview = () => {
       <div className="container">
         <div className="border-x border-primary/20">
           <div className="flex flex-col max-w-3xl mx-auto py-10 px-4 sm:px-7">
-            <div className="flex flex-col xs:flex-row gap-5 items-center justify-between">
-              <p className="text-sm tracking-[2px] text-primary uppercase font-medium">
-                {t.projects.label}
-              </p>
-              <Link
-                href={config.externalLinks.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-primary/20 px-4 py-2 text-sm hover:bg-primary/5 transition"
-              >
-                {t.projects.viewAll}
-                <ArrowUpRight size={16} />
-              </Link>
-            </div>
+            <p className="text-sm tracking-[2px] text-primary uppercase font-medium">
+              {t.projects.label}
+            </p>
             <h2 className="mt-2">{t.projects.heading}</h2>
             <p className="mt-2 text-sm text-secondary">{t.projects.description}</p>
           </div>
@@ -217,6 +206,17 @@ const ProjectOverview = () => {
                   </motion.article>
                 )}
               </AnimatePresence>
+            </div>
+            <div className="mt-8 flex justify-end">
+              <Link
+                href={config.externalLinks.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-primary/20 px-4 py-2 text-sm hover:bg-primary/5 transition"
+              >
+                {t.projects.viewAll}
+                <ArrowUpRight size={16} />
+              </Link>
             </div>
           </div>
         </div>
