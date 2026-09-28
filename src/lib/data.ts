@@ -95,14 +95,14 @@ export const certifications: CertificationItem[] = [
     issuer: "Personal Project",
     date: "2025",
     href: "https://github.com/Badie16/AuditQuest",
-    logoUrl: "/images/projects/AuditQuest.png",
+    logoUrl: "/images/projects/auditquest-bg.png",
   },
   {
     name: "SOC Anomaly Detection – 5M logs",
     issuer: "Personal Project",
     date: "2025",
     href: "https://github.com/Badie16/SentinelLogs",
-    logoUrl: "/images/projects/detectionAnomaly.png",
+    logoUrl: "/images/projects/hdfs-anomaly-bg.png",
   },
 ];
 
