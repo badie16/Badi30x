@@ -130,6 +130,16 @@ export const dictionary = {
 			showLess: "Voir moins",
 			viewCode: "Voir le code",
 			viewProject: "Voir le projet",
+			listCategory: {
+				semcube: "Analyse sécu applicative",
+				runsafety: "Sécurité runtime",
+				hdfs: "Détection d'anomalies",
+				modstrike: "Sécurité OT/ICS",
+				ai4cyberseced: "Formation sécu",
+				cti: "Threat intelligence",
+				auditquest: "Audit ISO 27002",
+				phytovigil: "Web / Mobile / IA",
+			},
 			shortLine: {
 				semcube: "Analyse sécu du code par IA",
 				runsafety: "Sécurité runtime Linux pour agents IA",
@@ -352,6 +362,16 @@ export const dictionary = {
 			showLess: "View less",
 			viewCode: "View code",
 			viewProject: "View project",
+			listCategory: {
+				semcube: "Application security analysis",
+				runsafety: "Runtime security",
+				hdfs: "Anomaly detection",
+				modstrike: "OT/ICS security",
+				ai4cyberseced: "Security training",
+				cti: "Threat intelligence",
+				auditquest: "ISO 27002 audit",
+				phytovigil: "Web / Mobile / AI",
+			},
 			shortLine: {
 				semcube: "AI-powered code security analysis",
 				runsafety: "Linux runtime security for AI agents",
