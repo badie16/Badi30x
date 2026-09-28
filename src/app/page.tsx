@@ -8,10 +8,12 @@ import ProjectOverview from "./components/home/project-overview";
 import Contact from "@/components/Contact";
 import Footer from "./components/layout/footer";
 import AnnouncementBar from "./components/layout/header/announcementBar";
+import Loader from "@/components/Loader";
 
 export default function Home() {
 	return (
 		<main>
+			<Loader />
 			<AnnouncementBar />
 			<HeroSection />
 			<Divider />
