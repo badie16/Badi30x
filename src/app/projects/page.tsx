@@ -3,6 +3,7 @@ import Divider from "../components/divider";
 import ProjectList from "../components/home/project-overview/project-list";
 import AnnouncementBar from "../components/layout/header/announcementBar";
 import Footer from "../components/layout/footer";
+import Loader from "@/components/Loader";
 import ProjectsHeader from "./header";
 
 export const metadata: Metadata = {
@@ -13,8 +14,9 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <main>
-      <AnnouncementBar />
+		<main>
+			<Loader />
+			<AnnouncementBar />
       <section>
         <div className="container pt-24">
           <div className="border-x border-primary/20">
@@ -27,7 +29,7 @@ export default function ProjectsPage() {
         <div className="container">
           <div className="border-x border-primary/20">
             <div className="flex flex-col max-w-3xl mx-auto px-4 sm:px-7 py-9 md:py-16">
-              <ProjectList />
+              <ProjectList withFilters />
             </div>
           </div>
         </div>
