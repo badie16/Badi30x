@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/components/LanguageProvider";
 import { getDictionary } from "@/lib/dictionary";
 import { config } from "@/lib/config";
@@ -80,10 +80,31 @@ const projects: Project[] = [
 const ProjectOverview = () => {
   const { language } = useLanguage();
   const t = getDictionary(language);
-  const [selectedId, setSelectedId] = useState<Project["id"]>("semcube");
+  const [selectedId, setSelectedId] = useState<Project["id"] | null>(null);
+  const boxRef = useRef<HTMLElement>(null);
 
-  const selected = projects.find((p) => p.id === selectedId) ?? projects[0];
-  const detailUrl = selected.projectUrl ?? selected.repo;
+  const selected = projects.find((p) => p.id === selectedId) ?? null;
+
+  useEffect(() => {
+    if (!selected) return;
+
+    const onPointerDown = (e: PointerEvent) => {
+      const target = e.target as HTMLElement;
+      if (boxRef.current?.contains(target)) return;
+      if (target.closest("[data-project-row]")) return;
+      setSelectedId(null);
+    };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedId(null);
+    };
+
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [selected]);
 
   return (
     <section id="projects">
@@ -108,14 +129,16 @@ const ProjectOverview = () => {
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="relative">
               <div>
                 {projects.map((project) => {
                   const active = project.id === selectedId;
                   return (
                     <button
                       key={project.id}
-                      onClick={() => setSelectedId(project.id)}
+                      data-project-row
+                      onClick={() => setSelectedId(active ? null : project.id)}
+                      aria-expanded={active}
                       className={`group flex w-full items-center gap-2 py-3 text-left transition-colors ${
                         active ? "text-blue-700 dark:text-blue-400" : "hover:text-blue-700 dark:hover:text-blue-400"
                       }`}
@@ -137,22 +160,23 @@ const ProjectOverview = () => {
                 })}
               </div>
 
-              <div className="lg:sticky lg:top-32 h-fit">
-                <AnimatePresence mode="wait">
+              <AnimatePresence>
+                {selected && (
                   <motion.article
+                    ref={boxRef}
                     key={selected.id}
-                    initial={{ opacity: 0, x: 24 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -12 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="overflow-hidden rounded-xl border border-primary/20 bg-background"
+                    initial={{ opacity: 0, y: 12, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
+                    className="absolute z-20 inset-x-0 top-2 sm:left-auto sm:right-0 sm:w-[26rem] lg:w-[30rem] overflow-hidden rounded-xl border border-primary/20 bg-background shadow-2xl"
                   >
-                    <div className="relative h-52 sm:h-60 w-full">
+                    <div className="relative h-48 sm:h-56 w-full">
                       <Image
                         src={selected.image}
                         alt={selected.title}
                         fill
-                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        sizes="(max-width: 640px) 100vw, 30rem"
                         className="object-cover"
                       />
                     </div>
@@ -180,7 +204,7 @@ const ProjectOverview = () => {
                           <ArrowUpRight size={15} />
                         </Link>
                         <Link
-                          href={detailUrl}
+                          href={selected.projectUrl ?? selected.repo}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 underline underline-offset-4 hover:opacity-80 transition"
@@ -191,8 +215,8 @@ const ProjectOverview = () => {
                       </div>
                     </div>
                   </motion.article>
-                </AnimatePresence>
-              </div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </div>
