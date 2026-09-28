@@ -73,7 +73,7 @@ const HeroSection = () => {
         <div className="">
           <div className="w-full h-72 relative">
             <Image
-              src="/images/hero-sec/banner-bg-img.png"
+              src="/images/hero-sec/banner-bg-img2.png"
               alt="banner-img"
               fill
               priority
