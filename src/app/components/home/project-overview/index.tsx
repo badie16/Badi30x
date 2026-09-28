@@ -110,14 +110,11 @@ const ProjectOverview = () => {
     <section id="projects">
       <div className="container">
         <div className="border-x border-primary/20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-7 py-9 md:py-16">
-            <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-8">
-              <div>
-                <p className="text-sm tracking-[2px] text-primary uppercase font-medium">
-                  {t.projects.label}
-                </p>
-                <p className="mt-2 max-w-xl text-secondary">{t.projects.description}</p>
-              </div>
+          <div className="flex flex-col max-w-3xl mx-auto py-10 px-4 sm:px-7">
+            <div className="flex flex-col xs:flex-row gap-5 items-center justify-between">
+              <p className="text-sm tracking-[2px] text-primary uppercase font-medium">
+                {t.projects.label}
+              </p>
               <Link
                 href={config.externalLinks.github}
                 target="_blank"
@@ -128,7 +125,10 @@ const ProjectOverview = () => {
                 <ArrowUpRight size={16} />
               </Link>
             </div>
-
+            <h2 className="mt-2">{t.projects.heading}</h2>
+            <p className="mt-2 text-sm text-secondary">{t.projects.description}</p>
+          </div>
+          <div className="flex flex-col max-w-3xl mx-auto px-4 sm:px-7 pb-9 md:pb-16">
             <div className="relative">
               <div>
                 {projects.map((project) => {
