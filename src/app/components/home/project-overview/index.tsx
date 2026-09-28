@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, Minus, Plus } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -80,19 +80,21 @@ const projects: Project[] = [
 const ProjectOverview = () => {
   const { language } = useLanguage();
   const t = getDictionary(language);
-  const [openId, setOpenId] = useState<Project["id"] | null>("semcube");
+  const [selectedId, setSelectedId] = useState<Project["id"]>("semcube");
+
+  const selected = projects.find((p) => p.id === selectedId) ?? projects[0];
+  const detailUrl = selected.projectUrl ?? selected.repo;
 
   return (
     <section id="projects">
       <div className="container">
         <div className="border-x border-primary/20">
           <div className="max-w-7xl mx-auto px-4 sm:px-7 py-9 md:py-16">
-            <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
+            <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-8">
               <div>
                 <p className="text-sm tracking-[2px] text-primary uppercase font-medium">
                   {t.projects.label}
                 </p>
-                <h2 className="mt-2">{t.projects.heading}</h2>
                 <p className="mt-2 max-w-xl text-secondary">{t.projects.description}</p>
               </div>
               <Link
@@ -106,95 +108,91 @@ const ProjectOverview = () => {
               </Link>
             </div>
 
-            <div className="border-t border-primary/20">
-              {projects.map((project, index) => {
-                const open = openId === project.id;
-                const detailUrl = project.projectUrl ?? project.repo;
-                return (
-                  <div key={project.id} className="border-b border-primary/20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div>
+                {projects.map((project) => {
+                  const active = project.id === selectedId;
+                  return (
                     <button
-                      onClick={() => setOpenId(open ? null : project.id)}
-                      aria-expanded={open}
-                      className="group flex w-full items-center gap-4 sm:gap-8 px-1 py-5 text-left transition-colors hover:bg-primary/5"
+                      key={project.id}
+                      onClick={() => setSelectedId(project.id)}
+                      className={`group flex w-full items-center gap-2 py-3 text-left transition-colors ${
+                        active ? "text-blue-700 dark:text-blue-400" : "hover:text-blue-700 dark:hover:text-blue-400"
+                      }`}
                     >
-                      <span className="w-8 shrink-0 text-sm text-muted-foreground tabular-nums">
-                        {String(index + 1).padStart(2, "0")}
+                      <span className="text-lg sm:text-xl font-medium">
+                        {project.title}
                       </span>
-                      <span className="min-w-0 flex-1 sm:flex-none sm:basis-64">
-                        <span className="block truncate text-lg font-semibold transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                          {project.title}
-                        </span>
+                      <span className="text-lg sm:text-xl font-light text-muted-foreground">
+                        – {t.projects.listCategory[project.id]}
                       </span>
-                      <span className="hidden flex-1 truncate text-sm text-muted-foreground sm:block">
-                        {t.projects.shortLine[project.id]}
-                      </span>
-                      <span className="ml-auto shrink-0 sm:ml-0">
-                        {open ? <Minus size={18} /> : <Plus size={18} />}
-                      </span>
+                      <ArrowUpRight
+                        size={20}
+                        className={`ml-1 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${
+                          active ? "" : "text-muted-foreground"
+                        }`}
+                      />
                     </button>
+                  );
+                })}
+              </div>
 
-                    <AnimatePresence initial={false}>
-                      {open && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.35, ease: "easeInOut" }}
-                          className="overflow-hidden"
+              <div className="lg:sticky lg:top-32 h-fit">
+                <AnimatePresence mode="wait">
+                  <motion.article
+                    key={selected.id}
+                    initial={{ opacity: 0, x: 24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -12 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    className="overflow-hidden rounded-xl border border-primary/20 bg-background"
+                  >
+                    <div className="relative h-52 sm:h-60 w-full">
+                      <Image
+                        src={selected.image}
+                        alt={selected.title}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="p-5">
+                      <h4>{selected.title}</h4>
+                      <p className="mt-2 text-secondary">{t.projects.items[selected.id]}</p>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {selected.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-lg border border-primary/20 px-3 py-1 text-xs sm:text-sm text-primary"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="mt-5 flex items-center gap-6 text-sm font-medium">
+                        <Link
+                          href={selected.repo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 underline underline-offset-4 hover:opacity-80 transition"
                         >
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-1 pb-8">
-                            <div className="relative h-52 sm:h-64 w-full overflow-hidden rounded-lg">
-                              <Image
-                                src={project.image}
-                                alt={project.title}
-                                fill
-                                sizes="(max-width: 768px) 100vw, 50vw"
-                                className="object-cover"
-                              />
-                            </div>
-                            <div className="flex flex-col">
-                              <h4>{t.projects.detailTitle[project.id]}</h4>
-                              <p className="mt-2 text-secondary">
-                                {t.projects.items[project.id]}
-                              </p>
-                              <div className="mt-4 flex flex-wrap gap-2">
-                                {project.tags.map((tag) => (
-                                  <span
-                                    key={tag}
-                                    className="rounded-lg border border-primary/20 px-3 py-1 text-xs sm:text-sm text-primary"
-                                  >
-                                    {tag}
-                                  </span>
-                                ))}
-                              </div>
-                              <div className="mt-5 flex items-center gap-6 text-sm font-medium">
-                                <Link
-                                  href={project.repo}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 underline underline-offset-4 hover:opacity-80 transition"
-                                >
-                                  {t.projects.viewCode}
-                                  <ArrowUpRight size={15} />
-                                </Link>
-                                <Link
-                                  href={detailUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 underline underline-offset-4 hover:opacity-80 transition"
-                                >
-                                  {t.projects.viewProject}
-                                  <ArrowUpRight size={15} />
-                                </Link>
-                              </div>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                );
-              })}
+                          {t.projects.viewCode}
+                          <ArrowUpRight size={15} />
+                        </Link>
+                        <Link
+                          href={detailUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 underline underline-offset-4 hover:opacity-80 transition"
+                        >
+                          {t.projects.viewProject}
+                          <ArrowUpRight size={15} />
+                        </Link>
+                      </div>
+                    </div>
+                  </motion.article>
+                </AnimatePresence>
+              </div>
             </div>
           </div>
         </div>
