@@ -19,12 +19,14 @@ export function LanguageProvider({
 }: Readonly<{ children: React.ReactNode }>) {
 	const [language, setLanguageState] = useState<Language>("fr");
 
+	// Restore persisted language on mount (intentional pattern)
 	useEffect(() => {
 		try {
 			const storedLanguage = window.localStorage.getItem(
 				STORAGE_KEY,
 			) as Language | null;
 			if (storedLanguage === "fr" || storedLanguage === "en") {
+				// eslint-disable-next-line react-hooks/set-state-in-effect
 				setLanguageState(storedLanguage);
 				return;
 			}

@@ -1,44 +1,32 @@
-import Hero from "@/components/Hero";
-import Skills from "@/components/Skills";
-import Experience from "@/components/Experience";
-import Projects from "@/components/Projects";
-import Certifications from "@/components/Certifications";
+import Divider from "./components/divider";
+import AboutMe from "./components/home/about-me";
+import Education from "./components/home/education";
+import Experience from "./components/home/experience";
+import GitHubSection from "./components/home/github";
+import HeroSection from "./components/home/hero-section";
+import ProjectOverview from "./components/home/project-overview";
 import Contact from "@/components/Contact";
-import Header from "@/components/Header";
-import BackToTop from "@/components/BackToTop";
-import { LanguageProvider } from "@/components/LanguageProvider";
-import { ThemeProvider } from "@/providers/ThemeProvider";
-import SectionTransition, { PageTransition } from "@/components/PageTransition";
-import BootSequence from "@/components/BootSequence";
+import Footer from "./components/layout/footer";
+import AnnouncementBar from "./components/layout/header/announcementBar";
 
 export default function Home() {
 	return (
-		<ThemeProvider>
-			<LanguageProvider>
-			<PageTransition>
-				<main className="min-h-screen bg-black text-white selection:bg-primary/30">
-					<BootSequence />
-					<Header />
-					<Hero />
-					<SectionTransition delay={0.1}>
-						<Skills />
-					</SectionTransition>
-					<SectionTransition delay={0.1}>
-						<Experience />
-					</SectionTransition>
-					<SectionTransition delay={0.1}>
-						<Projects />
-					</SectionTransition>
-					<SectionTransition delay={0.1}>
-						<Certifications />
-					</SectionTransition>
-					<SectionTransition delay={0.1}>
-						<Contact />
-					</SectionTransition>
-					<BackToTop />
-				</main>
-			</PageTransition>
-			</LanguageProvider>
-		</ThemeProvider>
+		<main>
+			<AnnouncementBar />
+			<HeroSection />
+			<Divider />
+			<AboutMe />
+			<Divider />
+			<Experience />
+			<Divider />
+			<Education />
+			<Divider />
+			<GitHubSection />
+			<Divider />
+			<ProjectOverview />
+			<Divider />
+			<Contact />
+			<Footer />
+		</main>
 	);
 }
