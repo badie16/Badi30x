@@ -119,6 +119,39 @@ export const dictionary = {
 				"Voici quelques projets sur lesquels j'ai travaillé. Chacun a été un défi unique qui m'a aidé à progresser.",
 			caption: "Voir tous les projets",
 			footer: "Et bien d'autres.",
+			label: "Projets sélectionnés",
+			heading: "Projets que j'ai construits",
+			viewAll: "Voir tous les projets",
+			code: "Code",
+			demo: "Démo",
+			liveDemo: "Démo live",
+			report: "Rapport",
+			filters: {
+				all: "Tous",
+				cybersecurity: "Cybersécurité",
+				aiml: "IA / ML",
+				devsecops: "DevSecOps",
+				webmobile: "Web & Mobile",
+				systems: "Systèmes",
+				iotics: "IoT / ICS",
+				tools: "Outils",
+			},
+			items: {
+				semcube:
+					"Plateforme IA d'analyse automatisée de la sécurité du code avec scanners multiples et enrichissement LLM.",
+				runsafety:
+					"Moniteur de sécurité runtime Linux pour agents IA, avec règles comportementales et alertes temps réel.",
+				hdfs: "Analyse machine learning de plus de 5 millions de logs pour détecter les anomalies des systèmes distribués.",
+				modstrike:
+					"Outil de supervision sécurité Modbus avec quatre scénarios d'attaque pour environnements industriels.",
+				ai4cyberseced:
+					"Simulation Linux basée LLM pour l'apprentissage pratique de la cybersécurité sans machines virtuelles.",
+				cti: "Système de détection de menaces IA pour identifier le phishing et les URLs malveillantes.",
+				auditquest:
+					"Jeu éducatif pour apprendre l'audit de sécurité et les bonnes pratiques ISO 27002.",
+				phytovigil:
+					"Application mobile qui identifie les maladies des plantes (38 classes) par vision par ordinateur.",
+			},
 			categories: {
 				p1: "Machine Learning / SOC",
 				p2: "Sécurité OT / ICS",
@@ -284,6 +317,39 @@ export const dictionary = {
 				"Here are some of the projects I've worked on. Each one was a unique challenge that helped me grow.",
 			caption: "View all projects",
 			footer: "And many more.",
+			label: "Selected projects",
+			heading: "Projects I've Built",
+			viewAll: "View all projects",
+			code: "Code",
+			demo: "Demo",
+			liveDemo: "Live Demo",
+			report: "Report",
+			filters: {
+				all: "All",
+				cybersecurity: "Cybersecurity",
+				aiml: "AI / ML",
+				devsecops: "DevSecOps",
+				webmobile: "Web & Mobile",
+				systems: "Systems",
+				iotics: "IoT / ICS",
+				tools: "Tools",
+			},
+			items: {
+				semcube:
+					"AI-powered platform for automated security analysis using multiple scanners and LLM enrichment.",
+				runsafety:
+					"Linux runtime security monitor for AI agents, with behavioral rules and real-time alerts.",
+				hdfs: "Machine learning analysis of over 5 million logs to detect anomalies in distributed systems.",
+				modstrike:
+					"Modbus security monitoring tool with four attack scenarios for industrial environments.",
+				ai4cyberseced:
+					"LLM-based Linux simulation for hands-on cybersecurity learning without virtual machines.",
+				cti: "AI-powered threat detection system for identifying phishing and malicious URLs.",
+				auditquest:
+					"Educational game for learning security auditing and ISO 27002 best practices.",
+				phytovigil:
+					"Mobile application that identifies plant diseases across 38 classes using computer vision.",
+			},
 			categories: {
 				p1: "Machine Learning / SOC",
 				p2: "OT / ICS security",
