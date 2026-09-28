@@ -126,6 +126,8 @@ export const dictionary = {
 			demo: "Démo",
 			liveDemo: "Démo live",
 			report: "Rapport",
+			showMore: "Voir plus",
+			showLess: "Voir moins",
 			filters: {
 				all: "Tous",
 				cybersecurity: "Cybersécurité",
@@ -324,6 +326,8 @@ export const dictionary = {
 			demo: "Demo",
 			liveDemo: "Live Demo",
 			report: "Report",
+			showMore: "View more",
+			showLess: "View less",
 			filters: {
 				all: "All",
 				cybersecurity: "Cybersecurity",
