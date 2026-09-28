@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, ChevronDown } from "lucide-react";
+import { ArrowUpRight, Minus, Plus } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,8 +15,7 @@ interface Project {
   image: string;
   tags: string[];
   repo: string;
-  secondLabel?: "demo" | "liveDemo" | "report";
-  secondUrl?: string;
+  projectUrl?: string;
 }
 
 const projects: Project[] = [
@@ -26,7 +25,6 @@ const projects: Project[] = [
     image: "/images/projects/semcube-bg.png",
     tags: ["Angular", "Node.js", "TypeScript", "MongoDB", "Docker", "LLM/RAG"],
     repo: config.externalLinks.github,
-    secondLabel: "liveDemo",
   },
   {
     id: "runsafety",
@@ -34,7 +32,6 @@ const projects: Project[] = [
     image: "/images/projects/runsafety-bg.png",
     tags: ["Rust", "Linux", "TUI", "Runtime Security"],
     repo: config.externalLinks.github,
-    secondLabel: "demo",
   },
   {
     id: "cti",
@@ -42,7 +39,6 @@ const projects: Project[] = [
     image: "/images/projects/cti-url-detection-bg.png",
     tags: ["Python", "Random Forest", "Isolation Forest", "Threat Intelligence"],
     repo: config.externalLinks.github,
-    secondLabel: "report",
   },
   {
     id: "hdfs",
@@ -50,7 +46,6 @@ const projects: Project[] = [
     image: "/images/projects/hdfs-anomaly-bg.png",
     tags: ["Python", "scikit-learn", "Isolation Forest", "Random Forest"],
     repo: "https://github.com/Badie16/SentinelLogs",
-    secondLabel: "report",
   },
   {
     id: "modstrike",
@@ -58,7 +53,6 @@ const projects: Project[] = [
     image: "/images/projects/modstrike-bg.png",
     tags: ["Python", "Modbus", "SCADA", "ICS/OT"],
     repo: "https://github.com/Badie16/ModStrike",
-    secondLabel: "demo",
   },
   {
     id: "ai4cyberseced",
@@ -66,7 +60,6 @@ const projects: Project[] = [
     image: "/images/projects/ai4cyberseced-bg.png",
     tags: ["Python", "LLM", "Linux"],
     repo: config.externalLinks.github,
-    secondLabel: "demo",
   },
   {
     id: "auditquest",
@@ -74,7 +67,6 @@ const projects: Project[] = [
     image: "/images/projects/auditquest-bg.png",
     tags: ["Web", "Gamification", "ISO 27002"],
     repo: "https://github.com/Badie16/AuditQuest",
-    secondLabel: "demo",
   },
   {
     id: "phytovigil",
@@ -82,23 +74,20 @@ const projects: Project[] = [
     image: "/images/projects/phytovigil-bg.png",
     tags: ["React Native", "FastAPI", "PostgreSQL", "TensorFlow", "MobileNetV2"],
     repo: "https://github.com/Badie16/PhytoVigil",
-    secondLabel: "demo",
   },
 ];
 
 const ProjectOverview = () => {
   const { language } = useLanguage();
   const t = getDictionary(language);
-  const [expanded, setExpanded] = useState(false);
-
-  const visible = expanded ? projects : projects.slice(0, 3);
+  const [openId, setOpenId] = useState<Project["id"] | null>("semcube");
 
   return (
     <section id="projects">
       <div className="container">
         <div className="border-x border-primary/20">
           <div className="max-w-7xl mx-auto px-4 sm:px-7 py-9 md:py-16">
-            <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-8">
+            <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
               <div>
                 <p className="text-sm tracking-[2px] text-primary uppercase font-medium">
                   {t.projects.label}
@@ -117,91 +106,95 @@ const ProjectOverview = () => {
               </Link>
             </div>
 
-            <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              <AnimatePresence initial={false}>
-                {visible.map((project) => (
-                  <motion.article
-                    key={project.id}
-                    layout
-                    initial={{ opacity: 0, y: 24, scale: 0.97 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.97 }}
-                    transition={{ duration: 0.35, ease: "easeOut" }}
-                    className="flex flex-col overflow-hidden rounded-xl border border-primary/20 bg-background hover:shadow-lg transition-shadow"
-                  >
-                    <div className="relative h-40 w-full">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        className="object-cover"
-                      />
-                      <Link
-                        href={project.secondUrl ?? project.repo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={project.title}
-                        className="absolute top-2 right-2 rounded-full bg-black/50 p-1.5 text-white hover:bg-black/70 transition"
-                      >
-                        <ArrowUpRight size={16} />
-                      </Link>
-                    </div>
-                    <div className="flex flex-1 flex-col p-4">
-                      <div className="flex items-start justify-between gap-2">
-                        <h5>{project.title}</h5>
-                        <Link
-                          href={project.secondUrl ?? project.repo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={project.title}
-                        >
-                          <ArrowUpRight size={16} className="shrink-0 text-secondary" />
-                        </Link>
-                      </div>
-                      <p className="mt-1 text-sm text-secondary">
-                        {t.projects.items[project.id]}
-                      </p>
-                      <div className="mt-3 flex flex-wrap gap-1.5">
-                        {project.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="rounded-full border border-primary/20 px-2.5 py-0.5 text-xs text-secondary"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      {project.secondLabel && project.secondUrl && (
-                        <div className="mt-4 flex items-center gap-4 text-sm">
-                          <Link
-                            href={project.secondUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 hover:text-primary transition-colors"
-                          >
-                            <ArrowUpRight size={16} />
-                            {t.projects[project.secondLabel]}
-                          </Link>
-                        </div>
-                      )}
-                    </div>
-                  </motion.article>
-                ))}
-              </AnimatePresence>
-            </motion.div>
+            <div className="border-t border-primary/20">
+              {projects.map((project, index) => {
+                const open = openId === project.id;
+                const detailUrl = project.projectUrl ?? project.repo;
+                return (
+                  <div key={project.id} className="border-b border-primary/20">
+                    <button
+                      onClick={() => setOpenId(open ? null : project.id)}
+                      aria-expanded={open}
+                      className="group flex w-full items-center gap-4 sm:gap-8 px-1 py-5 text-left transition-colors hover:bg-primary/5"
+                    >
+                      <span className="w-8 shrink-0 text-sm text-muted-foreground tabular-nums">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span className="min-w-0 flex-1 sm:flex-none sm:basis-64">
+                        <span className="block truncate text-lg font-semibold transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                          {project.title}
+                        </span>
+                      </span>
+                      <span className="hidden flex-1 truncate text-sm text-muted-foreground sm:block">
+                        {t.projects.shortLine[project.id]}
+                      </span>
+                      <span className="ml-auto shrink-0 sm:ml-0">
+                        {open ? <Minus size={18} /> : <Plus size={18} />}
+                      </span>
+                    </button>
 
-            <div className="mt-8 flex justify-center">
-              <button
-                onClick={() => setExpanded((v) => !v)}
-                className="group inline-flex items-center gap-2 rounded-full border border-primary/20 px-6 py-2.5 text-sm hover:bg-primary/5 transition"
-              >
-                {expanded ? t.projects.showLess : t.projects.showMore}
-                <ChevronDown
-                  size={16}
-                  className={`transition-transform duration-300 ${expanded ? "rotate-180" : "group-hover:translate-y-0.5"}`}
-                />
-              </button>
+                    <AnimatePresence initial={false}>
+                      {open && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.35, ease: "easeInOut" }}
+                          className="overflow-hidden"
+                        >
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-1 pb-8">
+                            <div className="relative h-52 sm:h-64 w-full overflow-hidden rounded-lg">
+                              <Image
+                                src={project.image}
+                                alt={project.title}
+                                fill
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                className="object-cover"
+                              />
+                            </div>
+                            <div className="flex flex-col">
+                              <h4>{t.projects.detailTitle[project.id]}</h4>
+                              <p className="mt-2 text-secondary">
+                                {t.projects.items[project.id]}
+                              </p>
+                              <div className="mt-4 flex flex-wrap gap-2">
+                                {project.tags.map((tag) => (
+                                  <span
+                                    key={tag}
+                                    className="rounded-lg border border-primary/20 px-3 py-1 text-xs sm:text-sm text-primary"
+                                  >
+                                    {tag}
+                                  </span>
+                                ))}
+                              </div>
+                              <div className="mt-5 flex items-center gap-6 text-sm font-medium">
+                                <Link
+                                  href={project.repo}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 underline underline-offset-4 hover:opacity-80 transition"
+                                >
+                                  {t.projects.viewCode}
+                                  <ArrowUpRight size={15} />
+                                </Link>
+                                <Link
+                                  href={detailUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1 text-blue-700 dark:text-blue-400 underline underline-offset-4 hover:opacity-80 transition"
+                                >
+                                  {t.projects.viewProject}
+                                  <ArrowUpRight size={15} />
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
