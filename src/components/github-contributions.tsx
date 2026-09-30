@@ -141,7 +141,7 @@ export function GitHubContributions({
           <a
             className="text-foreground underline"
             href={githubProfileUrl}
-            rel="noopener"
+            rel="noopener noreferrer"
             target="_blank"
           >
             GitHub
