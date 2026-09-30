@@ -34,12 +34,20 @@ export default function Loader() {
 					aria-hidden={!visible}
 				>
 					<Image
-						src="/images/branding/dragon.png"
+						src="/images/branding/logo_dark.png"
 						alt="Loading"
 						width={280}
 						height={280}
 						priority
-						className="object-contain"
+						className="object-contain dark:hidden"
+					/>
+					<Image
+						src="/images/branding/logo.png"
+						alt="Loading"
+						width={280}
+						height={280}
+						priority
+						className="hidden object-contain dark:block"
 					/>
 
 					<div className="mt-6 h-[3px] w-64 overflow-hidden rounded-full bg-primary/15">
