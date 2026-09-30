@@ -17,7 +17,7 @@ const STORAGE_KEY = "portfolio-language";
 export function LanguageProvider({
 	children,
 }: Readonly<{ children: React.ReactNode }>) {
-	const [language, setLanguageState] = useState<Language>("fr");
+	const [language, setLanguageState] = useState<Language>("en");
 
 	// Restore persisted language on mount (intentional pattern)
 	useEffect(() => {
