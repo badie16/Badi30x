@@ -115,7 +115,7 @@ export const projects: Project[] = [
     id: "c2forge",
     title: "C2Forge",
     period: "2026",
-    image: "/images/projects/modstrike-bg.png",
+    image: "/images/projects/file_00000000bcb4820a961bc8b515b25c7e.png",
     tags: ["Go", "Protobuf", "TCP/WS/HTTP", "Prometheus"],
     categories: ["cybersecurity", "systems", "tools"],
     repo: "https://github.com/badie16/C2Forge",
