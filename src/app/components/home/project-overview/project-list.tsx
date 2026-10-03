@@ -111,6 +111,15 @@ export const projects: Project[] = [
     categories: ["aiml", "webmobile"],
     repo: "https://github.com/Badie16/PhytoVigil",
   },
+  {
+    id: "c2forge",
+    title: "C2Forge",
+    period: "2026",
+    image: "/images/projects/modstrike-bg.png",
+    tags: ["Go", "Protobuf", "TCP/WS/HTTP", "Prometheus"],
+    categories: ["cybersecurity", "systems", "tools"],
+    repo: "https://github.com/badie16/C2Forge",
+  },
 ];
 
 function ProjectRow({ project }: { project: Project }) {
@@ -255,13 +264,4 @@ export default function ProjectList({
 			))}
 		</div>
 	);
-}  {
-    id: "c2forge",
-    title: "C2Forge",
-    period: "2026",
-    image: "/images/projects/modstrike-bg.png",
-    tags: ["Go", "Protobuf", "TCP/WS/HTTP", "Prometheus"],
-    categories: ["cybersecurity", "systems", "tools"],
-    repo: "https://github.com/badie16/C2Forge",
-  },
-
+}

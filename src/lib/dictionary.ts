@@ -145,7 +145,8 @@ export const dictionary = {
 					"Simulation Linux par LLM pour la formation en cybersécurité",
 				cti: "Renseignement sur les cybermenaces et détection d’URL malveillantes",
 				auditquest: "Audit de sécurité interactif selon ISO 27002",
-				phytovigil: "Détection des maladies des plantes par IA",\n\t\t\t\tc2forge: "Framework agent/contrôleur C2 modulaire en Go",
+				phytovigil: "Détection des maladies des plantes par IA",
+				c2forge: "Framework agent/contrôleur C2 modulaire en Go",
 			},
 			shortLine: {
 				semcube: "Analyse sécu du code par IA",
@@ -155,7 +156,8 @@ export const dictionary = {
 				ai4cyberseced: "Simulation Linux LLM pour apprendre la sécu",
 				cti: "Threat intelligence et URLs malveillantes",
 				auditquest: "Jeu interactif d'audit sécu",
-				phytovigil: "Détection maladies plantes par IA",\n\t\t\t\tc2forge: "Framework C2 modulaire en Go",
+				phytovigil: "Détection maladies plantes par IA",
+				c2forge: "Framework C2 modulaire en Go",
 			},
 			detailTitle: {
 				semcube: "Sécurité applicative automatisée",
@@ -165,7 +167,8 @@ export const dictionary = {
 				ai4cyberseced: "Apprendre la sécu sans VM",
 				cti: "Threat intelligence automatisée",
 				auditquest: "Audit ISO 27002 ludique",
-				phytovigil: "Santé des plantes par IA",\n\t\t\t\tc2forge: "Framework C2 modulaire multi-transport",
+				phytovigil: "Santé des plantes par IA",
+				c2forge: "Framework C2 modulaire multi-transport",
 			},
 			filters: {
 				all: "Tous",
@@ -192,6 +195,8 @@ export const dictionary = {
 					"Jeu éducatif pour apprendre l'audit de sécurité et les bonnes pratiques ISO 27002.",
 				phytovigil:
 					"Application mobile qui identifie les maladies des plantes (38 classes) par vision par ordinateur.",
+				c2forge:
+					"Framework agent/contrôleur C2 modulaire en Go, avec protocole versionné JSON/Protobuf, transports TCP/WS/HTTP et métriques Prometheus.",
 			},
 			categories: {
 				p1: "Machine Learning / SOC",
@@ -383,7 +388,8 @@ export const dictionary = {
 				ai4cyberseced: "LLM-Based Linux Simulation for Cybersecurity Training",
 				cti: "Cyber Threat Intelligence & Malicious URL Detection",
 				auditquest: "Interactive ISO 27002 Security Auditing",
-				phytovigil: "AI-Powered Plant Disease Detection",\n\t\t\t\tc2forge: "Modular C2 Agent/Controller Framework in Go",
+				phytovigil: "AI-Powered Plant Disease Detection",
+				c2forge: "Modular C2 Agent/Controller Framework in Go",
 			},
 			shortLine: {
 				semcube: "AI-powered code security analysis",
@@ -394,7 +400,8 @@ export const dictionary = {
 					"LLM-powered Linux simulation for cybersecurity learning",
 				cti: "Threat intelligence and malicious URL detection",
 				auditquest: "Interactive security auditing game",
-				phytovigil: "AI-powered plant disease detection",\n\t\t\t\tc2forge: "Modular C2 framework built in Go",
+				phytovigil: "AI-powered plant disease detection",
+				c2forge: "Modular C2 framework built in Go",
 			},
 			detailTitle: {
 				semcube: "Automated application security",
@@ -404,7 +411,8 @@ export const dictionary = {
 				ai4cyberseced: "Learn security without VMs",
 				cti: "Automated threat intelligence",
 				auditquest: "Playful ISO 27002 auditing",
-				phytovigil: "Plant health through AI",\n\t\t\t\tc2forge: "Modular multi-transport C2 framework",
+				phytovigil: "Plant health through AI",
+				c2forge: "Modular multi-transport C2 framework",
 			},
 			filters: {
 				all: "All",
@@ -431,6 +439,8 @@ export const dictionary = {
 					"Educational game for learning security auditing and ISO 27002 best practices.",
 				phytovigil:
 					"Mobile application that identifies plant diseases across 38 classes using computer vision.",
+				c2forge:
+					"Modular C2 agent/controller framework built in Go, with a versioned JSON/Protobuf protocol, TCP/WS/HTTP transports and Prometheus metrics.",
 			},
 			categories: {
 				p1: "Machine Learning / SOC",
