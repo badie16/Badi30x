@@ -28,7 +28,7 @@ export const filterKeys: FilterKey[] = [
 ];
 
 export interface Project {
-  id: "semcube" | "runsafety" | "hdfs" | "modstrike" | "ai4cyberseced" | "cti" | "auditquest" | "phytovigil";
+  id: "semcube" | "runsafety" | "hdfs" | "modstrike" | "ai4cyberseced" | "cti" | "auditquest" | "phytovigil" | "c2forge";
   title: string;
   period: string;
   image: string;
@@ -255,4 +255,13 @@ export default function ProjectList({
 			))}
 		</div>
 	);
-}
+}  {
+    id: "c2forge",
+    title: "C2Forge",
+    period: "2026",
+    image: "/images/projects/modstrike-bg.png",
+    tags: ["Go", "Protobuf", "TCP/WS/HTTP", "Prometheus"],
+    categories: ["cybersecurity", "systems", "tools"],
+    repo: "https://github.com/badie16/C2Forge",
+  },
+
