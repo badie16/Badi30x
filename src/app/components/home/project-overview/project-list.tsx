@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { useLanguage } from "@/components/LanguageProvider";
 import { getDictionary } from "@/lib/dictionary";
 import { config } from "@/lib/config";
@@ -28,65 +28,66 @@ export const filterKeys: FilterKey[] = [
 ];
 
 export interface Project {
-  id: "semcube" | "runsafety" | "hdfs" | "modstrike" | "ai4cyberseced" | "cti" | "auditquest" | "phytovigil";
+  id: "semcube" | "runsafety" | "hdfs" | "modstrike" | "ai4cyberseced" | "cti" | "auditquest" | "phytovigil" | "suppwayy" | "sysmon" | "emotify" | "souqlik" | "c2forge";
   title: string;
-  period: string;
-  image: string;
+  period?: string;
+  image?: string;
   tags: string[];
   categories: Exclude<FilterKey, "all">[];
-  repo: string;
+  repo?: string;
   projectUrl?: string;
+  status?: "mvp";
 }
 
 export const projects: Project[] = [
   {
     id: "semcube",
-    title: "SemCube",
+    title: "SemCube - AI-Powered Application Security",
     period: "2026",
     image: "/images/projects/semcube-bg.png",
-    tags: ["Angular", "Node.js", "TypeScript", "MongoDB", "Docker", "LLM/RAG"],
+    tags: ["Angular", "Node.js", "Express", "TypeScript", "MongoDB", "Semgrep", "Bandit", "Gitleaks", "Trivy", "ZAP", "Groq / Gemini", "ChromaDB", "Socket.IO", "LLM/RAG"],
     categories: ["cybersecurity", "devsecops", "aiml", "tools"],
     repo: config.externalLinks.github,
   },
   {
     id: "runsafety",
-    title: "RunSafety",
+    title: "RunSafety - Runtime Security for AI Coding Agents",
     period: "2026",
     image: "/images/projects/runsafety-bg.png",
-    tags: ["Rust", "Linux", "TUI", "Runtime Security"],
+    tags: ["Rust", "Tokio", "Ratatui", "SQLite", "Linux /proc", "inotify", "cgroups v2"],
     categories: ["cybersecurity", "systems", "tools"],
     repo: config.externalLinks.github,
   },
   {
     id: "cti",
-    title: "threadRadar",
+    title: "CTI & AI - Malicious URL Detection",
     period: "2026",
     image: "/images/projects/cti-url-detection-bg.png",
-    tags: ["Python", "Random Forest", "Isolation Forest", "Threat Intelligence"],
+    tags: ["Python", "scikit-learn", "Random Forest", "Isolation Forest", "FastAPI", "React"],
     categories: ["aiml", "cybersecurity"],
     repo: config.externalLinks.github,
   },
   {
     id: "hdfs",
-    title: "SentinelLogs",
+    title: "SentinelLogs - Machine Learning for HDFS Anomaly Detection",
     period: "2025",
     image: "/images/projects/hdfs-anomaly-bg.png",
-    tags: ["Python", "scikit-learn", "Isolation Forest", "Random Forest"],
+    tags: ["Python", "Jupyter", "Pandas", "NumPy", "scikit-learn", "Isolation Forest", "One-Class SVM"],
     categories: ["aiml", "cybersecurity"],
     repo: "https://github.com/Badie16/SentinelLogs",
   },
   {
     id: "modstrike",
-    title: "ModStrike",
+    title: "ModStrike - Modbus Security Monitoring and Testing",
     period: "2025",
     image: "/images/projects/modstrike-bg.png",
-    tags: ["Python", "Modbus", "SCADA", "ICS/OT"],
+    tags: ["Python", "PyQt6", "pymodbus", "PyQtGraph", "NumPy", "pyserial", "Modbus TCP/RTU"],
     categories: ["iotics", "cybersecurity"],
     repo: "https://github.com/Badie16/ModStrike",
   },
   {
     id: "ai4cyberseced",
-    title: "AI4CybersecEd",
+    title: "AI4CybersecEd - LLM-Powered Cybersecurity Training",
     period: "2025",
     image: "/images/projects/ai4cyberseced-bg.png",
     tags: ["Python", "LLM", "Linux"],
@@ -95,21 +96,57 @@ export const projects: Project[] = [
   },
   {
     id: "auditquest",
-    title: "AuditQuest",
+    title: "AuditQuest - Multiplayer Security Audit Simulator",
     period: "2025",
     image: "/images/projects/auditquest-bg.png",
-    tags: ["Web", "Gamification", "ISO 27002"],
+    tags: ["Phaser 3", "Colyseus", "React", "Redux", "TypeScript", "Material UI", "PeerJS / WebRTC", "ISO 27001/27002"],
     categories: ["cybersecurity", "webmobile"],
     repo: "https://github.com/Badie16/AuditQuest",
   },
   {
     id: "phytovigil",
-    title: "PhytoVigil",
+    title: "PhytoVigil - AI-Powered Plant Disease Detection",
     period: "2025",
     image: "/images/projects/phytovigil-bg.png",
-    tags: ["React Native", "FastAPI", "PostgreSQL", "TensorFlow", "MobileNetV2"],
+    tags: ["React Native", "Expo", "FastAPI", "PostgreSQL", "TensorFlow", "CNN", "OpenCV", "Gemini", "Next.js", "Tailwind CSS"],
     categories: ["aiml", "webmobile"],
     repo: "https://github.com/Badie16/PhytoVigil",
+  },
+  {
+    id: "suppwayy",
+    image: "/images/projects/suppwayy-bg.png",
+    title: "SuppWayy - B2B Platform Frontend and Web Security",
+    tags: ["JavaScript", "TypeScript", "OWASP"],
+    categories: ["webmobile", "cybersecurity"],
+  },
+  {
+    id: "sysmon",
+    image: "/images/projects/sysmon-bg.png",
+    title: "SysMon-cpp - Linux CLI System Monitor",
+    tags: ["C++11", "Linux /proc", "CMake", "Make", "GitHub Actions"],
+    categories: ["systems", "tools"],
+  },
+  {
+    id: "emotify",
+    image: "/images/projects/emotify-bg.png",
+    title: "EmotiFy - AI-Powered Multimodal Emotion Recognition",
+    tags: ["Python", "Deep Learning", "React", "Vite", "Tailwind CSS", "Node.js", "Express.js", "Flask", "Google Gemini AI", "PostgreSQL", "Supabase", "Recharts", "FFmpeg"],
+    categories: ["aiml", "webmobile"],
+  },
+  {
+    id: "souqlik",
+    image: "/images/projects/souqlik-bg.png",
+    title: "SouqLik - Local Shopping and Delivery Marketplace",
+    tags: ["React Native", "Expo", "React", "Vite", "Node.js", "Express", "TypeScript", "PostgreSQL", "Drizzle ORM", "TanStack Query"],
+    categories: ["webmobile"],
+    status: "mvp",
+  },
+  {
+    id: "c2forge",
+    image: "/images/projects/c2forge-bg.png",
+    title: "C2Forge - Secure Agent-Controller Framework",
+    tags: ["Go", "TLS", "HTTP / WebSockets", "JSON", "Protobuf", "REST API", "Prometheus", "Docker"],
+    categories: ["cybersecurity", "systems", "tools"],
   },
 ];
 
@@ -119,6 +156,7 @@ function ProjectRow({ project }: { project: Project }) {
 	const [expanded, setExpanded] = useState(false);
 	const [overflowing, setOverflowing] = useState(false);
 	const descRef = useRef<HTMLParagraphElement>(null);
+	const descriptionId = useId();
 
 	const [first, second, ...rest] = project.tags;
 	const description = t.projects.items[project.id];
@@ -142,13 +180,19 @@ function ProjectRow({ project }: { project: Project }) {
 		<article className="group/card flex flex-col gap-4 rounded-xl border border-border/70 bg-card/40 p-3 transition-colors duration-300 hover:border-orange-700/40 sm:flex-row sm:gap-5 sm:p-4 dark:hover:border-orange-400/40">
 			{/* Image */}
 			<div className="relative shrink-0 overflow-hidden rounded-lg ring-1 ring-border/60 sm:w-60">
-				<Image
-					src={project.image}
-					alt={project.title}
-					fill
-					sizes="(max-width: 640px) 100vw, 15rem"
-					className="object-cover transition-transform duration-500 group-hover/card:scale-[1.03] motion-reduce:transition-none"
-				/>
+				{project.image ? (
+					<Image
+						src={project.image}
+						alt={project.title}
+						fill
+						sizes="(max-width: 640px) 100vw, 15rem"
+						className="object-cover transition-transform duration-500 group-hover/card:scale-[1.03] motion-reduce:transition-none"
+					/>
+				) : (
+					<div className="flex min-h-36 items-center justify-center bg-primary/5 p-6 text-center text-lg font-medium text-primary">
+						{project.title}
+					</div>
+				)}
 			</div>
 
 			{/* Contenu */}
@@ -157,14 +201,17 @@ function ProjectRow({ project }: { project: Project }) {
 					<h5 className="text-base font-medium tracking-tight sm:text-lg">
 						{project.title}
 					</h5>
-					<span className="shrink-0 text-xs tabular-nums text-muted-foreground">
-						{project.period}
-					</span>
+					{project.period && (
+						<span className="shrink-0 text-xs tabular-nums text-muted-foreground">
+							{project.period}
+						</span>
+					)}
 				</div>
 
 				{/* Description */}
 				<p
 					ref={descRef}
+					id={descriptionId}
 					className={`mt-2 text-sm leading-relaxed text-secondary ${
 						expanded ? "" : "line-clamp-2"
 					}`}
@@ -175,12 +222,18 @@ function ProjectRow({ project }: { project: Project }) {
 				{/* more / less : seulement si la description est longue */}
 				{(overflowing || expanded) && (
 					<button
+						type="button"
 						onClick={() => setExpanded((v) => !v)}
+						aria-controls={descriptionId}
 						aria-expanded={expanded}
 						className="mt-1 w-fit text-xs text-muted-foreground transition-colors hover:text-orange-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700/40 dark:hover:text-orange-400"
 					>
-						{expanded ? t.projects.showLess : `… ${t.projects.more}`}
+						{expanded ? t.projects.showLess : t.projects.showMore}
 					</button>
+				)}
+
+				{project.status && (
+					<p className="mt-2 text-xs font-medium text-primary">{t.projects.status[project.status]}</p>
 				)}
 
 				{/* Compétences */}
@@ -241,7 +294,7 @@ export default function ProjectList({
 							onClick={() => setActive(key)}
 							className={`rounded-full px-4 py-1.5 text-sm transition ${
 								active === key
-									? "bg-primary text-white"
+									? "bg-primary text-background"
 									: "border border-primary/20 text-secondary hover:bg-primary/5"
 							}`}
 						>

@@ -2,9 +2,14 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/components/LanguageProvider";
+import { getDictionary } from "@/lib/dictionary";
 import { ShieldAlert, Home } from "lucide-react";
 
 export default function NotFound() {
+    const { language } = useLanguage();
+    const t = getDictionary(language);
+
     return (
         <div className="min-h-screen bg-black flex flex-col items-center justify-center text-center px-4 relative overflow-hidden">
             {/* Background Glitch Effect */}
@@ -23,12 +28,11 @@ export default function NotFound() {
                 </h1>
 
                 <h2 className="text-2xl md:text-4xl font-bold text-red-500 mb-6 uppercase tracking-widest">
-                    Breach Detected
+                    {t.common.notFoundTitle}
                 </h2>
 
                 <p className="text-muted-foreground max-w-md mx-auto mb-8 text-lg">
-                    The signal you are looking for has been lost or intercepted.
-                    Return to base immediately.
+                    {t.common.notFoundDescription}
                 </p>
 
                 <Link
@@ -36,7 +40,7 @@ export default function NotFound() {
                     className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300 font-medium group"
                 >
                     <Home className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                    Return to Safety
+                    {t.common.returnHome}
                 </Link>
             </motion.div>
 

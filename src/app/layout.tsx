@@ -4,10 +4,9 @@ import { ThemeProvider } from "next-themes";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import { inter } from "./fonts";
 import "./globals.css";
+import { config } from "@/lib/config";
 
-const siteUrl = new URL(
-	process.env.NEXT_PUBLIC_SITE_URL || "https://badiebahida.me",
-);
+const siteUrl = new URL(config.siteUrl);
 
 const siteName = "Badie BAHIDA";
 const siteTitle = `${siteName} | Cybersecurity & DevSecOps`;

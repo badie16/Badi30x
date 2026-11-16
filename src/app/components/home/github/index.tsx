@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import {
   GitHubContributions,
   GitHubContributionsFallback,
+  GitHubSectionHeading,
 } from "@/components/github-contributions";
 import { getCachedContributions } from "@/lib/get-cached-contributions";
 
@@ -18,7 +19,7 @@ export default function GitHubSection() {
         <div className="border-x border-primary/20">
           <div className="flex flex-col max-w-3xl mx-auto py-10 px-4 sm:px-7">
             <p className="text-sm tracking-[2px] text-primary uppercase font-medium">
-              Curious about my GitHub?
+              <GitHubSectionHeading />
             </p>
           </div>
           <div className="border-t border-primary/20">
