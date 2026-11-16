@@ -1,6 +1,8 @@
 "use client";
 
 import { use, useState } from "react";
+import { useLanguage } from "@/components/LanguageProvider";
+import { getDictionary } from "@/lib/dictionary";
 
 export type Activity = {
   date: string;
@@ -12,17 +14,6 @@ const BLOCK_SIZE = 11;
 const STEP = 14;
 const LABEL_HEIGHT = 22;
 const DAY = 86_400_000;
-const MONTH_FORMAT = new Intl.DateTimeFormat("en", {
-  month: "short",
-  timeZone: "UTC",
-});
-const DATE_FORMAT = new Intl.DateTimeFormat("en", {
-  month: "short",
-  day: "2-digit",
-  year: "numeric",
-  timeZone: "UTC",
-});
-
 const parseDate = (date: string) => new Date(`${date}T00:00:00Z`);
 
 export function GitHubContributions({
@@ -34,6 +25,12 @@ export function GitHubContributions({
   githubProfileUrl: string;
   className?: string;
 }) {
+  const { language } = useLanguage();
+  const t = getDictionary(language);
+  const monthFormat = new Intl.DateTimeFormat(language, { month: "short", timeZone: "UTC" });
+  const dateFormat = new Intl.DateTimeFormat(language, {
+    month: "short", day: "2-digit", year: "numeric", timeZone: "UTC",
+  });
   const data = use(contributions).toSorted((a, b) =>
     a.date.localeCompare(b.date),
   );
@@ -54,7 +51,7 @@ export function GitHubContributions({
       activity,
       date,
       day: date.getUTCDay(),
-      label: `${activity.count} contribution${activity.count === 1 ? "" : "s"} on ${DATE_FORMAT.format(date)}`,
+      label: `${activity.count} contribution${activity.count === 1 ? "" : "s"} ${t.github.on} ${dateFormat.format(date)}`,
       week: Math.floor((offset + start.getUTCDay()) / 7),
     };
   });
@@ -66,7 +63,7 @@ export function GitHubContributions({
       if (labels.at(-1)?.month !== month) {
         labels.push({
           month,
-          label: MONTH_FORMAT.format(cell.date),
+          label: monthFormat.format(cell.date),
           week: cell.week,
         });
       }
@@ -81,14 +78,14 @@ export function GitHubContributions({
     <div className={`flex max-w-full flex-col gap-2 ${className}`}>
       <div className="max-w-full overflow-x-auto overflow-y-hidden">
         <svg
-          aria-label="GitHub contributions"
+          aria-label={t.github.title}
           className="block w-full overflow-visible"
           height={LABEL_HEIGHT + STEP * 7 - 3}
           preserveAspectRatio="xMinYMin meet"
           role="img"
           viewBox={`0 0 ${weekCount * STEP - 3} ${LABEL_HEIGHT + STEP * 7 - 3}`}
         >
-          <title>GitHub contributions</title>
+          <title>{t.github.title}</title>
           <g className="fill-foreground text-sm">
             {months.map(({ label, week }) => (
               <text
@@ -136,8 +133,8 @@ export function GitHubContributions({
       ) : null}
       <div className="flex flex-wrap gap-1 px-2 whitespace-nowrap sm:gap-x-4">
         <div className="text-muted-foreground">
-          {total.toLocaleString("en")} contributions in {start.getUTCFullYear()}{" "}
-          on{" "}
+          {total.toLocaleString(language)} contributions {t.github.inYear} {start.getUTCFullYear()}{" "}
+          {t.github.onPlatform}{" "}
           <a
             className="text-foreground underline"
             href={githubProfileUrl}
@@ -149,10 +146,10 @@ export function GitHubContributions({
           .
         </div>
         <div className="ml-auto flex items-center gap-0.75 text-muted-foreground">
-          <span className="mr-1">Less</span>
+          <span className="mr-1">{t.github.less}</span>
           {[0, 1, 2, 3, 4].map((level) => (
             <svg height={BLOCK_SIZE} key={level} width={BLOCK_SIZE}>
-              <title>{level} contribution level</title>
+              <title>{t.github.level} {level}</title>
               <rect
                 className="fill-muted-foreground/10"
                 data-level={level}
@@ -162,17 +159,23 @@ export function GitHubContributions({
               />
             </svg>
           ))}
-          <span className="ml-1">More</span>
+          <span className="ml-1">{t.github.more}</span>
         </div>
       </div>
     </div>
   );
 }
 
+export function GitHubSectionHeading() {
+  const { language } = useLanguage();
+  return <>{getDictionary(language).github.heading}</>;
+}
+
 export function GitHubContributionsFallback() {
+  const { language } = useLanguage();
   return (
     <div className="flex h-40 w-full items-center justify-center text-muted-foreground">
-      Loading contributions…
+      {getDictionary(language).github.loading}
     </div>
   );
 }

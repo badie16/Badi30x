@@ -1,0 +1,35 @@
+{
+  "tool": "Built-in image_gen",
+  "assets": [
+    {
+      "id": "suppwayy",
+      "source": "/home/badie/.codex/generated_images/01a1701d-2b52-7fc1-afec-1f7f3c5ea690/exec-b104ab26-3017-4e14-b584-6428bf106ced.png",
+      "destination": "public/images/projects/suppwayy-bg.png",
+      "prompt": "Use case: stylized-concept. Asset type: portfolio project card cover. SuppWayy, a secure B2B procurement platform: premium cinematic photographic render of a laptop on a modern office desk, abstract dashboard of supply chains and inventory cards without readable writing, miniature warehouse and neat shipping boxes in background, elegant blue and teal lighting, realistic materials, trustworthy professional atmosphere. Composition: panoramic landscape, approximately 3:1 aspect ratio, one clear central focal group with generous breathing room, important elements kept inside center 65 percent so a narrower project card crop remains meaningful. High-end cinematic realistic illustration, rich lighting and depth consistent with technology portfolio cover art. No text, letters, project names, logos, watermark, collage, or border. Generate one single finished image."
+    },
+    {
+      "id": "sysmon",
+      "source": "/home/badie/.codex/generated_images/01a1701d-2b52-7fc1-afec-1f7f3c5ea690/exec-52a914e8-f769-4e59-b7c5-eeacb1380fd9.png",
+      "destination": "public/images/projects/sysmon-bg.png",
+      "prompt": "Use case: stylized-concept. Asset type: portfolio project card cover. SysMon-cpp, a Linux CLI system monitor written in C++: premium cinematic 3D render of a workstation terminal floating above a black motherboard, elegant green and cyan CPU activity graphs, process rows represented by fine luminous lines with no readable writing, subtle processor and memory modules, dark Linux systems engineering atmosphere. Composition: panoramic landscape, approximately 3:1 aspect ratio, one clear central focal group with generous breathing room, important elements kept inside center 65 percent so a narrower project card crop remains meaningful. High-end cinematic realistic illustration, rich lighting and depth consistent with technology portfolio cover art. No text, letters, project names, logos, watermark, collage, or border. Generate one single finished image."
+    },
+    {
+      "id": "emotify",
+      "source": "/home/badie/.codex/generated_images/01a1701d-2b52-7fc1-afec-1f7f3c5ea690/exec-70adbc64-6ccb-4b97-bb1d-1b0d1a016428.png",
+      "destination": "public/images/projects/emotify-bg.png",
+      "prompt": "Use case: stylized-concept. Asset type: portfolio project card cover. EmotiFy, AI text emotion analysis: premium cinematic 3D illustration of a luminous translucent human head silhouette with multicolor flowing ribbons of emotion inside, a floating dark analytics panel with colorful donut and bar charts, abstract message bubbles without text, violet indigo coral and turquoise lights, sophisticated warm expressive atmosphere. Composition: panoramic landscape, approximately 3:1 aspect ratio, one clear central focal group with generous breathing room, important elements kept inside center 65 percent so a narrower project card crop remains meaningful. High-end cinematic realistic illustration, rich lighting and depth consistent with technology portfolio cover art. No text, letters, project names, logos, watermark, collage, or border. Generate one single finished image."
+    },
+    {
+      "id": "souqlik",
+      "source": "/home/badie/.codex/generated_images/01a1701d-2b52-7fc1-afec-1f7f3c5ea690/exec-3292f5f1-48e6-487d-a07b-8faca7972e4b.png",
+      "destination": "public/images/projects/souqlik-bg.png",
+      "prompt": "Use case: stylized-concept. Asset type: portfolio project card cover. SouqLik, local shopping and delivery marketplace: premium cinematic 3D render of a smartphone with an abstract shopping interface without readable text surrounded by a small friendly Moroccan neighborhood of local storefronts, fresh produce, shopping bags and a delivery scooter, warm terracotta and teal, golden daylight, professional polished composition. Composition: panoramic landscape, approximately 3:1 aspect ratio, one clear central focal group with generous breathing room, important elements kept inside center 65 percent so a narrower project card crop remains meaningful. High-end cinematic realistic illustration, rich lighting and depth consistent with technology portfolio cover art. No text, letters, project names, logos, watermark, collage, or border. Generate one single finished image."
+    },
+    {
+      "id": "c2forge",
+      "source": "/home/badie/.codex/generated_images/01a1701d-2b52-7fc1-afec-1f7f3c5ea690/exec-4be01e25-cb77-4ffb-b790-90ca6aee9aca.png",
+      "destination": "public/images/projects/c2forge-bg.png",
+      "prompt": "Use case: stylized-concept. Asset type: portfolio project card cover. C2Forge, an experimental secure Go agent/controller framework: premium cinematic 3D render of a central secure server controller connected to several small agent nodes by luminous encrypted network channels, a translucent TLS padlock and a subtle telemetry graph, dark graphite brushed metal, electric blue with amber highlights, modular distributed systems engineering aesthetic, no offensive imagery. Composition: panoramic landscape, approximately 3:1 aspect ratio, one clear central focal group with generous breathing room, important elements kept inside center 65 percent so a narrower project card crop remains meaningful. High-end cinematic realistic illustration, rich lighting and depth consistent with technology portfolio cover art. No text, letters, project names, logos, watermark, collage, or border. Generate one single finished image."
+    }
+  ]
+}

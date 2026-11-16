@@ -2,10 +2,14 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import { useLanguage } from "@/components/LanguageProvider";
+import { getDictionary } from "@/lib/dictionary";
 import { useEffect, useState } from "react";
 
 export default function Loader() {
 	const [visible, setVisible] = useState(true);
+	const { language } = useLanguage();
+	const t = getDictionary(language);
 
 	useEffect(() => {
 		if (document.readyState === "complete") {
@@ -35,7 +39,7 @@ export default function Loader() {
 				>
 					<Image
 						src="/images/branding/logo_dark.png"
-						alt="Loading"
+						alt={t.common.loading}
 						width={280}
 						height={280}
 						priority
@@ -43,7 +47,7 @@ export default function Loader() {
 					/>
 					<Image
 						src="/images/branding/logo.png"
-						alt="Loading"
+						alt={t.common.loading}
 						width={280}
 						height={280}
 						priority
