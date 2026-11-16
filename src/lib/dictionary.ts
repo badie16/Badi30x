@@ -162,6 +162,7 @@ export const dictionary = {
 				cti: "Renseignement sur les cybermenaces et détection d’URL malveillantes",
 				auditquest: "Audit de sécurité interactif selon ISO 27002",
 				phytovigil: "Détection des maladies des plantes par IA",
+				c2forge: "Framework agent/contrôleur C2 modulaire en Go",
 			},
 			shortLine: {
 				semcube: "Analyse sécu du code par IA",
@@ -172,6 +173,7 @@ export const dictionary = {
 				cti: "Threat intelligence et URLs malveillantes",
 				auditquest: "Jeu interactif d'audit sécu",
 				phytovigil: "Détection maladies plantes par IA",
+				c2forge: "Framework C2 modulaire en Go",
 			},
 			detailTitle: {
 				semcube: "Sécurité applicative automatisée",
@@ -182,6 +184,7 @@ export const dictionary = {
 				cti: "Threat intelligence automatisée",
 				auditquest: "Audit ISO 27002 ludique",
 				phytovigil: "Santé des plantes par IA",
+				c2forge: "Framework C2 modulaire multi-transport",
 			},
 			filters: {
 				all: "Tous",
@@ -206,7 +209,7 @@ export const dictionary = {
 				sysmon: "Construire un moniteur système CLI sous Linux inspiré de top et htop. Développement du monitoring CPU, RAM et processus, architecture modulaire orientée objet, export CSV/TXT et tests.",
 				emotify: "Plateforme full-stack de reconnaissance des émotions à partir du visage, de la voix, des textes et des conversations, combinant des modèles de Deep Learning entraînés sur mesure et Google Gemini AI. En tant qu’AI/ML Engineer & Full-Stack Developer, entraînement et intégration des modèles, analyse des tendances émotionnelles et des signaux potentiels de détresse, ainsi que du sentiment et de la toxicité sur les réseaux sociaux. Développement du frontend React, des API Node.js/Express et Python, des visualisations interactives et du stockage PostgreSQL.",
 				souqlik: "Connecter les clients aux commerces locaux avec commandes et livraison. Architecture multi-applications, API backend, applications client et livreur, tableau d’administration et gestion des commandes.",
-				c2forge: "Développer un framework expérimental agent/controller modulaire avec communication sécurisée, gestion des tâches et supervision. Architecture agent/controller, protocole de communication, authentification, tâches distantes autorisées, métriques et benchmarks locaux : environ 69 tâches/s, p50 de 51 ms et p99 de 92 ms.",
+				c2forge: "Développer un framework expérimental agent/controller modulaire avec communication sécurisée, gestion des tâches et supervision. Architecture agent/controller, protocole versionné JSON/Protobuf, transports TCP/WS/HTTP, authentification, tâches distantes autorisées, métriques Prometheus et benchmarks locaux : environ 69 tâches/s, p50 de 51 ms et p99 de 92 ms.",
 				ai4cyberseced: "Simulation Linux basée LLM pour l'apprentissage pratique de la cybersécurité sans machines virtuelles.",
 			},
 			categories: {
@@ -416,6 +419,7 @@ export const dictionary = {
 				cti: "Cyber Threat Intelligence & Malicious URL Detection Prepared 631,530 URLs, engineered features, trained and evaluated models, and integrated them into the application.",
 				auditquest: "Interactive ISO 27002 Security Auditing Audit simulator adaptation and development, evidence collection, compliance assessment, risk matrices and report generation.",
 				phytovigil: "AI-Powered Plant Disease Detection Mobile app, backend and web administration development, AI model integration and advice generation.",
+				c2forge: "Modular C2 Agent/Controller Framework in Go",
 			},
 			shortLine: {
 				semcube: "AI-powered code security analysis Full-stack design, scanner orchestration, LLM/RAG integration, vulnerability prioritization and reporting.",
@@ -427,6 +431,7 @@ export const dictionary = {
 				cti: "Threat intelligence and malicious URL detection Prepared 631,530 URLs, engineered features, trained and evaluated models, and integrated them into the application.",
 				auditquest: "Interactive security auditing game Audit simulator adaptation and development, evidence collection, compliance assessment, risk matrices and report generation.",
 				phytovigil: "AI-powered plant disease detection Mobile app, backend and web administration development, AI model integration and advice generation.",
+				c2forge: "Modular C2 framework built in Go",
 			},
 			detailTitle: {
 				semcube: "Automated application security Full-stack design, scanner orchestration, LLM/RAG integration, vulnerability prioritization and reporting.",
@@ -437,6 +442,7 @@ export const dictionary = {
 				cti: "Automated threat intelligence Prepared 631,530 URLs, engineered features, trained and evaluated models, and integrated them into the application.",
 				auditquest: "Playful ISO 27002 auditing Audit simulator adaptation and development, evidence collection, compliance assessment, risk matrices and report generation.",
 				phytovigil: "Plant health through AI Mobile app, backend and web administration development, AI model integration and advice generation.",
+				c2forge: "Modular multi-transport C2 framework",
 			},
 			filters: {
 				all: "All",
@@ -461,7 +467,7 @@ export const dictionary = {
 				sysmon: "Build a Linux CLI system monitor inspired by top and htop. CPU, RAM and process monitoring, modular object-oriented architecture, CSV/TXT exports and tests.",
 				emotify: "Full-stack emotion recognition platform analyzing faces, voice, text and conversations with custom-trained Deep Learning models and Google Gemini AI. As an AI/ML Engineer & Full-Stack Developer, trained and integrated models, implemented emotional pattern and potential distress signal detection, and added social media sentiment and toxicity analysis. Built the React frontend, Node.js/Express and Python APIs, interactive visualizations and PostgreSQL storage.",
 				souqlik: "Connect customers with local shops through ordering and delivery. Multi-application architecture, backend API, customer and courier apps, administration dashboard and order management.",
-				c2forge: "Develop an experimental modular agent/controller framework with secure communication, task management and monitoring. Agent/controller architecture, communication protocol, authentication, authorized remote tasks, metrics and local benchmarks: about 69 tasks/s, 51 ms p50 and 92 ms p99 latency.",
+				c2forge: "Develop an experimental modular agent/controller framework with secure communication, task management and monitoring. Agent/controller architecture, versioned JSON/Protobuf protocol, TCP/WS/HTTP transports, authentication, authorized remote tasks, Prometheus metrics and local benchmarks: about 69 tasks/s, 51 ms p50 and 92 ms p99 latency.",
 				ai4cyberseced: "LLM-based Linux simulation for hands-on cybersecurity learning without virtual machines.",
 			},
 			categories: {

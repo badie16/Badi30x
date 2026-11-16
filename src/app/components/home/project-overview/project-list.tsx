@@ -143,10 +143,12 @@ export const projects: Project[] = [
   },
   {
     id: "c2forge",
-    image: "/images/projects/c2forge-bg.png",
     title: "C2Forge - Secure Agent-Controller Framework",
-    tags: ["Go", "TLS", "HTTP / WebSockets", "JSON", "Protobuf", "REST API", "Prometheus", "Docker"],
+    period: "2026",
+    image: "/images/projects/file_00000000bcb4820a961bc8b515b25c7e.png",
+    tags: ["Go", "TLS", "HTTP / WebSockets", "JSON", "Protobuf", "TCP/WS/HTTP", "REST API", "Prometheus", "Docker"],
     categories: ["cybersecurity", "systems", "tools"],
+    repo: "https://github.com/badie16/C2Forge",
   },
 ];
 
